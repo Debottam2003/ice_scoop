@@ -4,23 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IceDream Parlor</title>
-  <link rel="stylesheet" href="stylesheets/landing.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" type="image/png" href="/images/ice scoop logo.png"/>
+  <link rel="stylesheet" href="stylesheets/landing.css">
 </head>
 <body>
 
   <header>
     <div class="logo"><h1>𝓘𝓬𝓮 𝓢𝓬𝓸𝓸𝓹</h1></div>
-    <nav>
-        <div class="search-box">
-            <input type="text" name="search" id="sb" placeholder="looking for my favorite">
-            <button type="button" id="search-btn"><img src="/images/search.ico" alt="this is an image" srcset="" id="search-icon"></button>
+    <nav class="main-nav">
+      <div class="nav-container">
+        <div class="search-container">
+          <div class="search-box">
+            <input type="text" name="search" id="sb" placeholder="Search my flavors...">
+            <button type="button" id="search-btn"><img src="/images/search.ico" alt="search icon" id="search-icon"></button>
+          </div>
         </div>
+        <div class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
       <a href="#hero">Home</a>
       <a href="#flavors">Flavors</a>
       <a href="#contact">Contact</a>
       <a href="/icescoop/login" id="login-btn">Login</a>
     </nav>
+    
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#hero">Home</a>
+      <a href="#flavors">Flavors</a>
+      <a href="#contact">Contact</a>
+      <a href="/icescoop/login" id="mobile-login">Login</a>
+    </div>
   </header>
 
   <section id="hero" class="hero">
@@ -54,6 +70,7 @@
     <h2>Contact Us</h2>
     <p style="text-align: center;">📍 123 Scoop Street, Delhi • 📞 98765 43210</p>
   </section>
+  
   <footer>
     &copy; 2025 IceScoop Parlor. All rights reserved.
     <p>
