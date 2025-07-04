@@ -79,7 +79,7 @@ app.post("/icescoop/register", express.json(), async (req, res) => {
         console.log(err.message);
         res.status(500).json({ message: "Internal server error" });
     }
-})
+});
 
 try {
     await pool.connect()
