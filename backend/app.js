@@ -17,14 +17,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/icescoop", (req, res) => {
-    res.sendFile(path.join(__dirname, "public"));
+    res.sendFile(path.join(__dirname, "public", "landing.html"));
 });
 
 try {
     await pool.connect()
     console.log("DataBase connected successfully...");
     app.listen(3333, () => {
-        console.log("Server is listening and serving on port: ", 3333, "...");
+        console.log("Server is listening and serving on port:", 3333, "...");
     });
 }
 catch (err) {
