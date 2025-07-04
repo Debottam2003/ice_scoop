@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ice Scoop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IceDream Parlor</title>
+  <link rel="stylesheet" href="stylesheets/landing.css">
+  <link rel="icon" type="image/png" href="ice scoop logo.png" />
 </head>
 <body>
+
+  <header>
+    <div class="logo"><h1>𝓘𝓬𝓮 𝓢𝓬𝓸𝓸𝓹</h1></div>
+    <nav>
+        <div class="search-box">
+            <input type="text" name="search" id="sb" placeholder="looking for my favorite">
+            <button type="button" id="search-btn"><img src="search.ico" alt="this is an image" srcset="" id="search-icon"></button>
+        </div>
+      <a href="#hero">Home</a>
+      <a href="#flavors">Flavors</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
     <h1>Welcome to Ice Scoop</h1>
+    <p>Where every scoop is a dream come true.</p>
+    <button onclick="scrollToFlavors()">Explore Flavors</button>
+  </section>
+
+  <section id="flavors" class="section">
+    <h2>Our Favorite Flavors</h2>
+    <div class="flavors">
+      <div class="flavor-card">
+        <img src="https://source.unsplash.com/250x150/?icecream,strawberry" alt="Strawberry Delight"/>
+        <h3>Strawberry Delight</h3>
+        <p>Sweet and refreshing with real berry chunks!</p>
+      </div>
+      <div class="flavor-card">
+        <img src="https://source.unsplash.com/250x150/?icecream,chocolate" alt="Choco Fudge"/>
+        <h3>Choco Fudge</h3>
+        <p>Rich chocolate with gooey fudge swirls.</p>
+      </div>
+      <div class="flavor-card">
+        <img src="https://source.unsplash.com/250x150/?icecream,vanilla" alt="Classic Vanilla"/>
+        <h3>Classic Vanilla</h3>
+        <p>Smooth and timeless, the original favorite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p style="text-align: center;">📍 123 Scoop Street, Delhi • 📞 98765 43210</p>
+  </section>
+  <footer>
+    &copy; 2025 IceDream Parlor. All rights reserved.
+  </footer>
+  <script src="scripts/landing.js"></script>
 </body>
 </html>
