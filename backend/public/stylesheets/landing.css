@@ -31,9 +31,9 @@
       padding: 0;
       font-size: 1.8rem;
       font-weight: bold;
-      color: rgb(255, 214, 138);
-      text-shadow: 1px 3px 3px black;
-      -webkit-text-stroke: 1.5px rgb(255, 166, 0);
+      color: #e91e63;
+      /* text-shadow: 1px 3px 3px black;
+      -webkit-text-stroke: 1.5px rgb(255, 166, 0); */
     }
     
     .main-nav {
