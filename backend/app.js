@@ -12,23 +12,27 @@ let __dirname = path.dirname(__filename);
 
 let app = express();
 app.use(cors());
+app.set("strict routing", true);
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serving Static files 
+// Serving Static files
+app.get("/icescoop/", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "landing.html"));
+});
 
 app.get("/icescoop", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "landing.html"));
+    res.sendFile(path.join(__dirname, "pages", "landing.html"));
 });
 
 app.get("/icescoop/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "Login.html"));
+    res.sendFile(path.join(__dirname, "pages", "Login.html"));
 });
 
 app.get("/icescoop/register", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "Register.html"));
+    res.sendFile(path.join(__dirname, "pages", "Register.html"));
 });
 
 // Login POST route
