@@ -89,5 +89,5 @@ try {
     });
 }
 catch (err) {
-    console.log(err.message)
+    console.log(err.message);
 }
