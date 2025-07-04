@@ -11,6 +11,7 @@ let __dirname = path.dirname(__filename);
 // console.log(__dirname);
 
 let app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
