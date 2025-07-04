@@ -1,0 +1,32 @@
+// Admin //
+
+1.Admin registeration.
+    insert into staffs values("email_from_FE","password_from_FE","phone_no_from_FE","joining_from_FE","designation_from_FE","salary_from_FE");
+2.Admin login.
+    select * from staffs where email=("email_from_FE") AND password=("password_from_FE");
+3.to fetch all data of orders table.
+    select * from orders;
+4.to fetch all product stock list.
+    select icecream_id , name , quantity from icecreams;
+5.update stock.
+    update table icecream set quantity = () where icecream_id = ();
+
+------------------------------------------------------------------------------------------------
+
+// New Customer //
+
+1.Newly registered customer.
+    insert into users values ("email_from_FE","password_from_FE","location_from_FE","pin_from_FE");
+
+------------------------------------------------------------------------------------------------
+
+// Exixting Customer //
+
+1.logs in.
+    select * from users where email = ("email_from_FE") AND password = ("password_from_FE");
+2.searches icecream.
+    select * from icecreams where name = ("name_from_FE");
+3.checks his/her orders.
+    select * from orders.order_id , orders.user_id ,items.item_id , icecream.icecream_name ,item.quantity from orders where orders.order_id = items.order_id AND item.item_id=icecream.icecream_id AND orders.user_id =("user_id_from_FE");
+
+------------------------------------------------------------------------------------------------
