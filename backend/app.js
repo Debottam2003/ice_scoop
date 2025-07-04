@@ -25,6 +25,11 @@ app.get("/icescoop", (req, res) => {
 app.get("/icescoop/login", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "Login.html"));
 });
+
+app.get("/icescoop/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "Register.html"));
+});
+
 try {
     await pool.connect()
     console.log("DataBase connected successfully...");
