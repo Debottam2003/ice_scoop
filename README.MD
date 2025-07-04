@@ -4,7 +4,7 @@ The website is meant to serve remote and as well as in store customers who want 
 # Admin 
 Admin logs in the website.
     1.sales report. 
-    2.stock maintenance. 
+    2.stock maintenance(update/review). 
 # -----------------------------------------
 # New Customer
 lands on the landing page
