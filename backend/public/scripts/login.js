@@ -26,10 +26,10 @@ login.addEventListener("submit", async (e) => {
             success.textContent = data.message;
             failure.style.display = "none";
             success.style.display = "flex";
-            // After 2.5 sec redirect to home page
+            // After 2 sec redirect to home page
             setTimeout(() => {
                 window.location.href = "/icescoop"
-            }, 2500);
+            }, 2000);
         }
     } catch (err) {
         failure.textContent = "Something went wrong⚠️";
