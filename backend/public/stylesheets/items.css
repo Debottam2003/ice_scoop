@@ -4,6 +4,11 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
 }
+
+h1{
+  font-family: 'cursive';
+}
+
 body{
     background-image:linear-gradient(to right, #ffe0e0, #fff7c2);
 
@@ -126,6 +131,7 @@ header {
  background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
+ background-color: black;
 }
 
 .card-details {
@@ -194,7 +200,7 @@ footer {
 @media (max-width: 900px) {
   .card {
     width: 320px;
-    height: 220px;
+    height: 240px;
     padding: 1.2rem;
   }
   .card-details {
@@ -203,6 +209,9 @@ footer {
 }
 
 @media (max-width: 600px) {
+  h1{
+    font-family: cursive;
+  }
   #sb{
     font-size: small;
   }
@@ -215,7 +224,7 @@ footer {
   .card {
     width: 90vw;
     max-width: 340px;
-    height: 180px;
+    height: 200px;
     padding: 1rem;
   }
   .card-details {

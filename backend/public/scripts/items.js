@@ -6,7 +6,7 @@ let container = document.getElementById("items-container");
 
 async function getData() {
     try{
-        let response = await fetch("http://localhost:3333/icescoop/icecreams");
+        let response = await fetch("http://192.168.18.119:3333/icescoop/icecreams");
         if(!response.ok) {
             container.innerHTML = "<h1>No Icecreams to show now</h1>"
         } 
