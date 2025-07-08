@@ -30,6 +30,10 @@ app.get("/icescoop/register", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "Register.html"));
 });
 
+app.get("/icescoop/flavours", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "Items.html"));
+});
+
 // Login POST route
 app.post("/icescoop/userLogin", express.json(), async (req, res) => {
     let { email, password } = req.body;
