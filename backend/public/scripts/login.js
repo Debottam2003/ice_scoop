@@ -6,7 +6,6 @@ login.addEventListener("submit", async (e) => {
     e.preventDefault();
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    // console.log(email, password);
     try {
         let response = await fetch("http://localhost:3333/icescoop/userLogin", {
             method: "POST",
@@ -27,10 +26,10 @@ login.addEventListener("submit", async (e) => {
             success.textContent = data.message;
             failure.style.display = "none";
             success.style.display = "flex";
-            // After 1 sec redirect to home page
+            // After 2.5 sec redirect to home page
             setTimeout(() => {
                 window.location.href = "/icescoop"
-            }, 3000);
+            }, 2500);
         }
     } catch (err) {
         failure.textContent = "Something went wrong⚠️";

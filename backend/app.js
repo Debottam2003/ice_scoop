@@ -33,11 +33,11 @@ app.get("/icescoop/register", (req, res) => {
 // Login POST route
 app.post("/icescoop/userLogin", express.json(), async (req, res) => {
     let { email, password } = req.body;
-    console.log(email, password);
     if (!email || !password) {
         res.status(400).json({ message: "Provide all credentials" });
     }
     try {
+        console.log(email, password);
         let data = await pool.query("select email, password from users where email = $1", [email]);
         if (data.rows.length === 0) {
             res.status(400).json({ message: "Wrong credentails." });
