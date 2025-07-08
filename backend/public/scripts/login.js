@@ -30,6 +30,7 @@ login.addEventListener("submit", async (e) => {
             success.style.display = "flex";
             // After 2 sec redirect to home page
             setTimeout(() => {
+                success.style.display = "none";
                 window.location.href = "/icescoop"
             }, 2000);
         }
