@@ -18,11 +18,6 @@ app.set("strict routing", true);
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serving Static files
-app.get("/icescoop/", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "landing.html"));
-});
-
 app.get("/icescoop", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "landing.html"));
 });
@@ -36,8 +31,9 @@ app.get("/icescoop/register", (req, res) => {
 });
 
 // Login POST route
-app.post("/icescoop/login", express.json(), async (req, res) => {
+app.post("/icescoop/userLogin", express.json(), async (req, res) => {
     let { email, password } = req.body;
+    console.log(email, password);
     if (!email || !password) {
         res.status(400).json({ message: "Provide all credentials" });
     }
@@ -63,7 +59,7 @@ app.post("/icescoop/login", express.json(), async (req, res) => {
 });
 
 // Register POST route
-app.post("/icescoop/register", express.json(), async (req, res) => {
+app.post("/icescoop/userRegister", express.json(), async (req, res) => {
     console.log(req.body);
     let { email, password, pin_code, address } = req.body;
     if (!email || !password || !pin_code || !address) {
