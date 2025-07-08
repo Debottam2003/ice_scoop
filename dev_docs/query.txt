@@ -30,3 +30,40 @@
     select * from orders.order_id , orders.user_id ,items.item_id , icecream.icecream_name ,item.quantity from orders where orders.order_id = items.order_id AND item.item_id=icecream.icecream_id AND orders.user_id =("user_id_from_FE");
 
 ------------------------------------------------------------------------------------------------
+
+// Items //
+
+1.fetch all items.
+    select icecream_id, name, price, description, quantity from icecreams;
+
+------------------------------------------------------------------------------------------------
+
+// Orders //
+
+1.Order items (insert each item).
+    insert into items (order_id, item_id, quantity) values ("order_id_from_FE", "item_id_from_FE", "quantity_from_FE");
+2.Order details.
+    insert into orders (user_id, order_date, order_time, delivery_time, toppings, total_cost, mode) 
+    values ("user_id_from_FE", "date_from_FE", "time_from_FE", "delivery_time_from_FE", "toppings_from_FE", "cost_from_FE", "mode_from_FE");
+3.Order cost with GST (example 18%).
+    update orders set total_cost = "total_with_GST_from_FE" where order_id = ("order_id_from_FE");
+ 
+ ------------------------------------------------------------------------------------------------
+
+ // Ratings // 
+
+ 1.Order-level rating.
+    insert into order_ratings (order_id, service_rating, quality_rating, happiness_rating) 
+    values ("order_id_from_FE", "service_rating_from_FE", "quality_rating_from_FE", "happiness_rating_from_FE");
+
+2.Item-wise ratings.
+    insert into item_ratings (item_id, order_id, rating) 
+    values ("item_id_from_FE", "order_id_from_FE", "rating_from_FE");
+    Feedback (optional text);
+3.Feedback.
+    insert into feedback (order_id, user_id, message) values ("order_id_from_FE", "user_id_from_FE", "feedback_message_from_FE");
+
+ ------------------------------------------------------------------------------------------------
+
+
+
