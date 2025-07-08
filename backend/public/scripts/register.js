@@ -10,6 +10,8 @@ register.addEventListener("submit", async (e) => {
     let pin_code = document.getElementById("pin_code").value;
     console.log(email, password, address, pin_code);
     try {
+        failure.style.display = "none";
+        success.style.display = "none";
         let response = await fetch("http://localhost:3333/icescoop/userRegister", {
             method: "POST",
             headers: {

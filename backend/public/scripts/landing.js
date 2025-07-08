@@ -20,16 +20,6 @@
         });
       });
       
-      // Search functionality
-      const searchBtn = document.getElementById('search-btn');
-      searchBtn.addEventListener('click', function() {
-        const searchTerm = document.getElementById('sb').value;
-        if(searchTerm.trim() !== '') {
-          alert('Searching for: ' + searchTerm);
-          // Implement actual search functionality here
-        }
-      });
-      
       // Allow search on Enter key
       document.getElementById('sb').addEventListener('keypress', function(e) {
         if(e.key === 'Enter') {

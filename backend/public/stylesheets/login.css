@@ -7,20 +7,45 @@
 
 #failure {
     display: none;
-    background-color: rgb(218, 98, 98);
-    color: #ffffff;
-    padding: 0.75rem;
-    border-radius: 10px;
-    border: 2px solid rgb(111, 5, 5);
+    background-color: red;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(231, 76, 60, 0.2);
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    animation: shake 0.4s;
+    text-align: center;
 }
 
 #success {
     display: none;
-    background-color: rgb(34, 189, 36);
-    color: #ffffff;
-    padding: 0.75rem;
-    border-radius: 10px;
-    border: 2px solid rgb(9, 127, 21);
+    background-color: rgb(32, 187, 32);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(46, 204, 113, 0.2);
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    animation: pop 0.4s;
+    text-align: center;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-8px); }
+    80% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    80% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
 }
 
 a {
@@ -115,6 +140,7 @@ button:hover {
         border-radius: 0.75rem;
         max-width: 80%;
         width: 400px;
+        box-shadow: 0px 0px 20px #e91e62a2;
     }
     .login {
         font-size: 1.1rem;

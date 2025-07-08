@@ -7,6 +7,8 @@ login.addEventListener("submit", async (e) => {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     try {
+        failure.style.display = "none";
+        success.style.display = "none";
         let response = await fetch("http://localhost:3333/icescoop/userLogin", {
             method: "POST",
             headers: {
