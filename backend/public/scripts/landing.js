@@ -1,8 +1,6 @@
 
     function scrollToFlavors() {
-      document.getElementById('flavors').scrollIntoView({
-        behavior: 'smooth'
-      });
+      window.location.href='icescoop/flavours';
     }
     
     // Mobile menu functionality
