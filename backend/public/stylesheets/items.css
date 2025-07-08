@@ -171,6 +171,11 @@ header {
  opacity: 1;
 }
 
+.icecream-image {
+  width: 270px;
+  height: 270px;
+}
+
 /* footer css */
 footer {
       background: #fff;

@@ -1,15 +1,15 @@
-item_name,in_stock,mfg_date,exp_date,quantity,regular_price,standard_price,premium_price
-Black Forest Sundae,TRUE,null,null,10,145,205,310
-Chocolate Overload,TRUE,null,null,10,145,205,310
-Cookie Monster,TRUE,null,null,10,145,205,310
-Ferrero Rocher Sundae,TRUE,null,null,10,180,260,499
-Vanilla Over,TRUE,null,null,10,135,195,320
-Capuccino Crunch,TRUE,null,null,10,135,199,310
-Cadbury Crunch,TRUE,null,null,10,170,250,350
-Killer Belgain Chocolate,TRUE,null,null,10,170,250,350
-Rain forest Sundae,TRUE,null,null,10,,199,399
-Kitkat Oreo Crunch,TRUE,null,null,10,170,250,410
-Ice Scoop Special Chocolate,TRUE,null,null,10,,195,
-Daab Malai,TRUE,null,null,10,160,250,350
-Real Fruit [ Tutty Fruty Sundae ],TRUE,null,null,10,145,210,350
-Fresh fruit & Nuts,TRUE,null,null,10,150,230,370
+name,in_stock,mfg_date,exp_date,quantity,regular_price,standard_price,premium_price,image
+Black_Forest_Sundae,TRUE,null,null,10,145,205,310,/images/Black_Forest_Sundae.png
+Chocolate_Overload,TRUE,null,null,10,145,205,310,/images/Chocolate_Overload.png
+Cookie_Monster,TRUE,null,null,10,145,205,310,/images/Cookie_Monster.png
+Ferrero_Rocher_Sundae,TRUE,null,null,10,180,260,499,/images/Ferrero_Rocher_Sundae.png
+Vanilla_Over,TRUE,null,null,10,135,195,320,/images/Vanilla_Over.png
+Cappuccino_Crunch,TRUE,null,null,10,135,199,310,/images/Cappuccino_Crunch.png
+Cadbury_Crunch,TRUE,null,null,10,170,250,350,/images/Cadbury_Crunch.png
+Killer_Belgian_Chocolate,TRUE,null,null,10,170,250,350,/images/Killer_Belgian_Chocolate.png
+Rain_forest_Sundae,TRUE,null,null,10,,199,399,/images/Rain_forest_Sundae.png
+Kitkat_Oreo_Crunch,TRUE,null,null,10,170,250,410,/images/Kitkat_Oreo_Crunch.png
+Ice_Scoop_Special,TRUE,null,null,10,,195,,/images/Ice_Scoop_Special.png
+Daab_Malai,TRUE,null,null,10,160,250,350,/images/Daab_Malai.png
+Real_Fruit,TRUE,null,null,10,145,210,350,/images/Real_Fruit.png
+Fresh_fruit & Nuts,TRUE,null,null,10,150,230,370,/images/Fresh_fruit_&_Nuts.png

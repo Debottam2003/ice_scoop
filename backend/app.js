@@ -85,6 +85,20 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
     }
 });
 
+// Fetch all of the icecream data
+app.get("/icescoop/icecreams", async (req, res) => {
+    try{
+    let {rows} = await pool.query("select * from icecreams");
+    res.status(200).json({
+        message: rows // array of objects
+    });
+    } catch(err) {
+        res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+});
+
 try {
     await pool.connect()
     console.log("DataBase connected successfully...");
