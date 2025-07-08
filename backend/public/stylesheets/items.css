@@ -114,7 +114,7 @@ header {
 }
 .card {
  width: 300px;
- height: 300px;
+ height: 400px;
  border-radius: 20px;
  background: #f5f5f5;
  position: relative;
@@ -123,15 +123,20 @@ header {
  transition: 0.5s ease-out;
  overflow: visible;
  flex-wrap: 1;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
 }
 
 .card-details {
- margin-top:85px ;
  color: black;
- height: 80%;
  gap: .5em;
  display: grid;
  place-content: center;
+ display: flex;
+ justify-content: center;
+ align-items: end;
+ color: #ffffffcf;
 }
 
 .card-button {
@@ -164,6 +169,7 @@ header {
 .card:hover {
  border-color: #e91e63;
  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+ filter: contrast(1.5);
 }
 
 .card:hover .card-button {

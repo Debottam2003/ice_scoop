@@ -19,19 +19,20 @@ async function getData() {
                 // console.log(icecream);
                 let icecreamDiv = document.createElement("div");
                 icecreamDiv.classList.add("card");
+                icecreamDiv.style.backgroundImage = `url(${icecream.image})`;
 
                 let details = document.createElement("div");
                 icecreamDiv.classList.add("card-details");
 
-                let image = document.createElement("img");
-                image.classList.add("icecream-image");
-                image.src = `${icecream.image}`;
+                // let image = document.createElement("img");
+                // image.classList.add("icecream-image");
+                // image.src = `${icecream.image}`;
 
                 let title = document.createElement("p");
                 title.classList.add("text-title")
                 title.textContent = icecream.name.replaceAll("_", " ");
 
-                details.appendChild(image);
+                // details.appendChild(image);
                 details.appendChild(title);
 
                 let addCart = document.createElement("button");
