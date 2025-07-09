@@ -54,7 +54,7 @@ header {
   box-shadow: 0 8px 30px rgba(253, 73, 133, 0.4);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.3s ease-out;
-  background-color: #ffffffe0;
+  background-color: #ffffff;
 }
 
 #choice-img {
@@ -402,5 +402,34 @@ footer {
   }
   .card-details {
     margin-top: 35px;
+  }
+}
+
+#alert {
+  width: 100%;
+  height: auto;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  animation: pop 2s ease-in-out;
+  font-size: large;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

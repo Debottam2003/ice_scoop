@@ -1,7 +1,8 @@
 function Goback() {
-    window.location.href='/icescoop';
+    window.location.href = '/icescoop';
 }
 
+let body = document.querySelector("body");
 let container = document.getElementById("items-container");
 let choice = document.getElementById("choice");
 let choice_img = document.getElementById("choice-img");
@@ -15,7 +16,7 @@ let increaseBTN = document.getElementById("increase");
 function decrease() {
     let total = document.getElementById("total-no");
     let no_of_items = Number(total.textContent);
-    if(no_of_items > 1) {
+    if (no_of_items > 1) {
         no_of_items--;
         total.textContent = no_of_items;
     }
@@ -24,7 +25,7 @@ function decrease() {
 function increase() {
     let total = document.getElementById("total-no");
     let no_of_items = Number(total.textContent);
-    if(no_of_items < 100) {
+    if (no_of_items < 100) {
         no_of_items++;
         total.textContent = no_of_items;
     }
@@ -43,11 +44,11 @@ function choiceClose() {
 }
 
 async function getData() {
-    try{
-        let response = await fetch("http://localhost:3333/icescoop/icecreams");
-        if(!response.ok) {
+    try {
+        let response = await fetch("http://192.168.18.119:3333/icescoop/icecreams");
+        if (!response.ok) {
             container.innerHTML = "<h1>No Icecreams to show now</h1>"
-        } 
+        }
         else {
             let data = await response.json();
             console.log("data fetched successfully");
@@ -90,34 +91,48 @@ async function getData() {
             let addCartButtons = document.querySelectorAll(".card-button");
             addCartButtons.forEach((btn) => {
                 btn.addEventListener("click", async (e) => {
-                let icecream_id = e.target.id;
-                // console.log(icecream_id);
-                try {
-                    choice.style.display = "none";
-                    let response = await fetch(`http://localhost:3333/icescoop/foundicecream/${icecream_id}`);
-                    if(!response.ok) {
-                        choice.innerHTML = "<h2>Something went wrong</h2>";
-                        choice.style.display = "flex";
-                        return;
-                    } else {
-                        let data = await response.json();
-                        let icecreamData = data.message;
-                        choice_img.src = icecreamData[0].image;
-                        choice_description.textContent = icecreamData[0].description;
-                        // console.log(icecreamData[0].regular_price);
-                        regular.textContent = `${icecreamData[0].regular_price}`;
-                        standard.textContent = `${icecreamData[0].standard_price}`;
-                        premium.textContent = `${icecreamData[0].premium_price}`;
-                        choice.style.display = "flex";
+                    let alertDiv = document.getElementById("alert");
+                    if (alertDiv) {
+                        // body.removeChild(alertDiv);
+                        alertDiv.remove();
                     }
-                } catch(err) {
-                    console.log("something went wrong");
-                }
-            });
+                    let email = localStorage.getItem("userEmail");
+                    let exp = localStorage.getItem("exp");
+                    if (exp && email) {
+                        let icecream_id = e.target.id;
+                        // console.log(icecream_id);
+                        try {
+                            choice.style.display = "none";
+                            let response = await fetch(`http://192.168.18.119:3333/icescoop/foundicecream/${icecream_id}`);
+                            if (!response.ok) {
+                                choice.innerHTML = "<h2>Something went wrong</h2>";
+                                choice.style.display = "flex";
+                                return;
+                            } else {
+                                let data = await response.json();
+                                let icecreamData = data.message;
+                                choice_img.src = icecreamData[0].image;
+                                choice_description.textContent = icecreamData[0].description;
+                                // console.log(icecreamData[0].regular_price);
+                                regular.textContent = `${icecreamData[0].regular_price}`;
+                                standard.textContent = `${icecreamData[0].standard_price}`;
+                                premium.textContent = `${icecreamData[0].premium_price}`;
+                                choice.style.display = "flex";
+                            }
+                        } catch (err) {
+                            console.log("something went wrong");
+                        }
+                    } else {
+                        let alertDiv = document.createElement("div");
+                        alertDiv.id = "alert";
+                        body.prepend(alertDiv);
+                        alertDiv.textContent = "Login First to Add to Cart!";
+                    }
+                });
             });
 
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err.message);
     }
 }
