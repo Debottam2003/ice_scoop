@@ -1,0 +1,15 @@
+item_name,in_stock,mfg_date,exp_date,quantity,regular_price,standard_price,premium_price
+Black Forest Sundae,TRUE,null,null,,145,205,310
+Chocolate Overload,TRUE,null,null,,145,205,310
+Cookie Monster,TRUE,null,null,,145,205,310
+Ferrero Rocher Sundae,TRUE,null,null,,180,260,499
+Vanilla Over,TRUE,null,null,,135,195,320
+Capuccino Crunch,TRUE,null,null,,135,199,310
+Cadbury Crunch,TRUE,null,null,,170,250,350
+Killer Belgain Chocolate,TRUE,null,null,,170,250,350
+Rain forest Sundae,TRUE,null,null,,,199,399
+Kitkat Oreo Crunch,TRUE,null,null,,170,250,410
+Ice Scoop Special Chocolate,TRUE,null,null,,,195,
+Daab Malai,TRUE,null,null,,160,250,350
+Real Fruit [ Tutty Fruty Sundae ],TRUE,null,null,,145,210,350
+Fresh fruit & Nuts,TRUE,null,null,,150,230,370
