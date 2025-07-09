@@ -54,7 +54,7 @@ app.get("/icescoop/account/:user_email", async (req, res) => {
             return;
         }
         else {
-            console.log(rows);
+            // console.log(rows);
             res.status(200).json({ message: rows });
         }
     } catch (err) {
@@ -92,7 +92,7 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
 
 // Register POST route
 app.post("/icescoop/userRegister", express.json(), async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let { email, password, pin_code, address } = req.body;
     if (!email || !password || !pin_code || !address) {
         res.status(400).json({ message: "All fields are required." });
@@ -108,7 +108,7 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
             res.status(200).json({ message: "Welcome to Ice Scoop." });
         }
     } catch (err) {
-        console.log(err.message);
+        // console.log(err.message);
         res.status(500).json({ message: "Internal server error" });
     }
 });
@@ -143,7 +143,7 @@ app.get("/icescoop/icecreams", async (req, res) => {
 // Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     let icecream_id = req.params.icecream_id;
-    console.log(icecream_id);
+    // console.log(icecream_id);
     try {
         let { rows } = await pool.query("select * from icecreams where icecream_id = $1", [icecream_id]);
         res.status(200).json({
