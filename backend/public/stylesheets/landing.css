@@ -233,7 +233,7 @@
 
 .flavor-card img {
   width: 100%;
-  max-height: 180px;
+  max-height: 250px;
   object-fit: cover;
   border-radius: 15px;
   margin-bottom: 1rem;
