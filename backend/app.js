@@ -87,15 +87,28 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
 
 // Fetch all of the icecream data
 app.get("/icescoop/icecreams", async (req, res) => {
-    try{
-    let {rows} = await pool.query("select * from icecreams");
-    res.status(200).json({
-        message: rows // array of objects
-    });
-    } catch(err) {
+    try {
+        let { rows } = await pool.query("select * from icecreams");
+        res.status(200).json({
+            message: rows // array of objects
+        });
+    } catch (err) {
         res.status(500).json({
             message: "Internal server error"
         });
+    }
+});
+
+app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
+    let icecream_id = req.params.icecream_id;
+    console.log(icecream_id);
+    try {
+        let { rows } = await pool.query("select * from icecreams where icecream_id = $1", [icecream_id]);
+        res.status(200).json({
+            message: rows
+        });
+    } catch (err) {
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 

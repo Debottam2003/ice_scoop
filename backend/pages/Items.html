@@ -25,6 +25,28 @@
     </nav>
   </header>
 
+  <!-- Choice before Add to cart  -->
+    <div id="choice">
+      <img id="choice-img" src="/images/Black_Forest_Sundae.png" />
+      <div id="choice-area">
+        <div id="choice-description">	A refreshing mix of fresh fruits and crunchy nuts for a balanced, wholesome sundae.</div>
+        <div id="choice-select">
+          <div id="choice-radio">
+            <div><input type="radio" name="quality" value="regular" />Regular: &#8377; <span id="regular">100</span> </div>
+            <div><input type="radio" name="quality" value="standard" />Standard: &#8377; <span id="standard">100</span> </div>
+            <div><input type="radio" name="quality" value="premium" />Premium: &#8377; <span id="premium">100</span> </div>
+          </div>
+          <div id="quantity">
+            <button id="decrease">-</button>
+            <div id="total-no">1</div>
+            <button id="increase">+</button>
+          </div>
+          <button id="choice-add">Add</button>
+        </div>
+      </div>
+      <button id="close" onclick="choiceClose()">X</button>
+    </div>
+
     <div id="items-container">
 
     <!--card 1-->
