@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link rel="stylesheet" href="/stylesheets/profile.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
+    
     <header>
-    <div class="logo"><h1>Ice Scoop</h1></div>
-    <nav class="main-nav">
-      <button class="Goback" onclick="Goback()">Home</button>
-    </nav>
-  </header>
+      <div class="logo"><h1>Ice Scoop</h1></div>
+      <nav class="main-nav">
+        <button class="Goback" onclick="Goback()">Home</button>
+      </nav>
+    </header>
 
-  <div id="dashboard">
-    <div id="userImg"></div>
-    <div id="userDetails">
-      <h1 id="userName">Shubhranil Karmakar</h1>
-      <h3 id="userAddress">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo iure nobis perferendis blanditiis dolorem.</h3>
-    </div>
-  </div>
-  <div id="userCart">
-    <h1>Cart</h1>
-    <div id="cartElements"></div>
-  </div>
+    <main>
+      <section id="dashboard">
+        <div id="userImg"></div>
+        <div id="userDetails">
+          <h1 id="userName">Shubhranil Karmakar</h1>
+          <p id="userAddress">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo iure
+            nobis perferendis blanditiis dolorem.
+          </p>
+        </div>
+        <div id="user-btn">
+          <button class="user-action" id="orders">Orders</button>
+          <button class="user-action" id="cart">Cart</button>
+          <button class="user-action" id="logout">Log Out</button>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-    &copy; 2025 IceScoop Parlor. All rights reserved.
-    <p>
-    Authors: debottamkar2003@gmail.com, samratkarmakarnaihati@gmail.com, gagan-mondal@gmail.com
-    </p>
-  </footer>
+    <footer>
+      &copy; 2025 IceScoop Parlor. All rights reserved.
+      <p>
+        Authors: debottamkar2003@gmail.com, samratkarmakarnaihati@gmail.com,
+        gagan-mondal@gmail.com
+      </p>
+    </footer>
 
-<script src="/scripts/profile.js"></script>
-</body>
+    <script src="/scripts/profile.js"></script>
+  </body>
 </html>

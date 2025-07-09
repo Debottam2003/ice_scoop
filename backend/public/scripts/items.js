@@ -45,7 +45,7 @@ function choiceClose() {
 
 async function getData() {
     try {
-        let response = await fetch("http://192.168.18.119:3333/icescoop/icecreams");
+        let response = await fetch("http://localhost:3333/icescoop/icecreams");
         if (!response.ok) {
             container.innerHTML = "<h1>No Icecreams to show now</h1>"
         }
@@ -103,7 +103,7 @@ async function getData() {
                         // console.log(icecream_id);
                         try {
                             choice.style.display = "none";
-                            let response = await fetch(`http://192.168.18.119:3333/icescoop/foundicecream/${icecream_id}`);
+                            let response = await fetch(`http://localhost:3333/icescoop/foundicecream/${icecream_id}`);
                             if (!response.ok) {
                                 choice.innerHTML = "<h2>Something went wrong</h2>";
                                 choice.style.display = "flex";

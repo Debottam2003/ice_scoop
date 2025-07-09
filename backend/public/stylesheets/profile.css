@@ -1,121 +1,160 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-body{
-    background-image:linear-gradient(to right, #ffe0e0, #fff7c2);
-   
-} 
+body {
+  background-image: linear-gradient(to right, #ffe0e0, #fff7c2);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    max-height: 130px;
-}
-footer {
-      background: #fff;
-      position: absolute;
-      bottom: 0;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
-      width: 100%;
-}
-.main-nav {
-    width: 100vw;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 100%;
-    }
-
-.Goback{
-      padding: 0.75rem 1.5rem;
-      /* margin: 0.7rem; */
-      font-size: 1rem;
-      background: #e91e63;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.5s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff48;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.logo > h1 {
-      margin: 0;
-      padding: 0;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #e91e63;
-      font-family: 'cursive';
-
+.logo h1 {
+  font-size: 2rem;
+  font-family: cursive;
+  color: #e91e63;
 }
 
-#dashboard{
-  width: 50vw;
-  height:70vh;
-  position: absolute;
-  top:18%;
-  right:40%;
-  border-radius: 20px;
-  background-color: #fff;
+.main-nav .Goback {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: #e91e63;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.main-nav .Goback:hover {
+  background: #c2185b;
+}
+
+main {
+  flex: 1;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  border: 1px solid white;
+  align-items: center;
+  padding: 2rem 1rem;
 }
-#dashboard:hover{
-  border-color: #e91e63;
-  box-shadow: 0px 0px 10px #e91e63;
-}
-#userImg{
-  position: relative;
-  top:8%;
-  height: 100px;
-  width: 100px;
-  background-color:cyan;
-  border-radius: 50%;
-}
-#userDetails{
-  height: 60%;
+
+#dashboard {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-#userCart{
-  background-color:white;
-  text-align: center;
-  padding: 20px;
-  position: fixed;
-  top:20%;
-  right:8%;
-  height: 66%;
-  width: 30%;
+  max-width: 700px;
+  /* background: #ffffffaa; */
+  background: transparent;
+  backdrop-filter: blur(20px);
+  color: white;
   border-radius: 20px;
-  cursor: pointer;
+  padding: 2rem;
+  box-shadow: 0 0 15px rgba(233, 30, 99, 0.3);
+  text-align: center;
   border: 1px solid white;
 }
-#userCart:hover{
-  border-color: #e91e63;
-  box-shadow: 0px 0px 10px #e91e63;
+
+#userImg {
+  height: 75px;
+  width: 75px;
+  background-color: #e91e63;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
 }
+
+#userDetails h1 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+#userDetails p {
+  font-size: 1rem;
+  color: white;
+  padding: 0 1rem;
+}
+
+#user-btn {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.user-action {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #e91e63;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.user-action:hover {
+  background: #c2185b;
+  transform: translateY(-2px);
+}
+
+footer {
+  background: #ffffff48;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ededed;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
 @media (max-width: 600px) {
-  h1{
-    font-family: cursive;
+  #dashboard {
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
   }
-  
+
+  #userDetails h1 {
+    font-size: 1.4rem;
+  }
+
+  #userDetails p {
+    font-size: 0.9rem;
+  }
+
+  .user-action {
+    flex: 1 1 100%;
+    margin: 0.3rem 0;
+  }
+}
+
+#cart {
+  color: black;
+  background-color: #fff7c2;
+  border: 2px solid #e91e63;
+}
+
+#orders,
+#logout {
+  border: 2px solid #fff7c2;
+}
+
+body {
+  background-image: url("/images/Black_Forest_Sundae.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

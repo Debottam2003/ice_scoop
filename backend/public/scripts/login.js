@@ -19,7 +19,7 @@ login.addEventListener("submit", async (e) => {
     try {
         failure.style.display = "none";
         success.style.display = "none";
-        let response = await fetch("http://192.168.18.119:3333/icescoop/userLogin", {
+        let response = await fetch("http://localhost:3333/icescoop/userLogin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
