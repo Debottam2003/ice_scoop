@@ -16,23 +16,45 @@ app.set("strict routing", true);
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
+// Serving the html pages
 app.use(express.static(path.join(__dirname, "public")));
 
+// Landing page
 app.get("/icescoop", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "landing.html"));
 });
 
+// Login page
 app.get("/icescoop/login", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "Login.html"));
 });
 
+// Register page
 app.get("/icescoop/register", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "Register.html"));
 });
 
+// Flavours/Items Page
 app.get("/icescoop/flavours", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "Items.html"));
 });
+
+// User account details
+app.get("/icescoop/acount/:user_email", async (req, res) => {
+    let user_email = req.params.user_email;
+    try {
+        let { rows } = await pool.query("select id, email, address, pin_code from users where email = $1", [user_email]);
+        if (rows.length == 0) {
+            res.status(400).json({ message: "User not found" });
+            return;
+        }
+        else {
+            res.status(200).json({ message: rows });
+        }
+    } catch (err) {
+        res.status(500).json({ message: "Internal Server error" });
+    }
+})
 
 // Login POST route
 app.post("/icescoop/userLogin", express.json(), async (req, res) => {
@@ -85,6 +107,19 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
     }
 });
 
+// Logout get route
+app.get("/icescoop/logout/:user_email", async (req, res) => {
+    let user_email = req.params.user_email;
+    try {
+        let { rows } = await pool.query("select id, email from users where email = $1", [user_email]);
+        if (rows.length > 0) {
+            res.status(200).json({ message: "success" });
+        }
+    } catch (err) {
+        res.status(500).json({ message: "Internal Server error" });
+    }
+});
+
 // Fetch all of the icecream data
 app.get("/icescoop/icecreams", async (req, res) => {
     try {
@@ -99,6 +134,7 @@ app.get("/icescoop/icecreams", async (req, res) => {
     }
 });
 
+// Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     let icecream_id = req.params.icecream_id;
     console.log(icecream_id);
@@ -112,6 +148,7 @@ app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     }
 });
 
+// Database connection then listen and serve
 try {
     await pool.connect()
     console.log("DataBase connected successfully...");
