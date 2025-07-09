@@ -39,6 +39,11 @@ app.get("/icescoop/flavours", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "Items.html"));
 });
 
+// User Account page
+app.get("/icescoop/account", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "profile.html"));
+});
+
 // User account details
 app.get("/icescoop/acount/:user_email", async (req, res) => {
     let user_email = req.params.user_email;
@@ -71,7 +76,7 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
         }
         else {
             if (password === data.rows[0].password) {
-                res.status(200).json({ message: "Welcome to IceScoop again" });
+                res.status(200).json({ message: "Welcome Back to IceScoop again" });
                 return;
             }
             else {
