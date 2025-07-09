@@ -12,6 +12,13 @@ body {
   height: 100vh;
 }
 
+nav {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 15px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -153,9 +160,14 @@ main {
 }
 
 #cart {
-  color: black;
-  background-color: #fff7c2;
-  border: 2px solid #e91e63;
+  background-image: url("/images/shopping-cart.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
 }
 
 #orders,
@@ -168,4 +180,17 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#index {
+  color: #e91e63;
+  font-size: medium;
+  font-weight: bold;
+  position: relative;
+  right: -1px;
+  top: -5px;
+}
+
+#cart-div {
+  display: flex;
 }
