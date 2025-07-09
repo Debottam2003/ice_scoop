@@ -353,3 +353,6 @@
       }
     }
   
+#login-btn, #account-btn, #mobile-login, #mobile-account {
+  display: none;
+}
