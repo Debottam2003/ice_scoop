@@ -7,21 +7,18 @@
 
 body {
   background-image: linear-gradient(to right, #ffe0e0, #fff7c2);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff48;
+  background: #ffffff;
   padding: 1rem 2rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 
 .logo h1 {
@@ -73,6 +70,11 @@ main {
   background-color: #e91e63;
   border-radius: 50%;
   margin: 0 auto 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bolder;
 }
 
 #userDetails h1 {
@@ -111,20 +113,20 @@ main {
   transform: translateY(-2px);
 }
 
-footer {
-  background: #ffffff48;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #ededed;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
-}
-
 @media (max-width: 600px) {
   #dashboard {
     width: 100%;
+    overflow: hidden;
     padding: 1rem;
     margin: 0;
+  }
+
+  #userName {
+    font-size: small;
+  }
+
+  .logo > h1 {
+    font-size: large;
   }
 
   #userDetails h1 {
@@ -133,6 +135,15 @@ footer {
 
   #userDetails p {
     font-size: 0.9rem;
+  }
+
+  .Goback {
+    padding: 1rem;
+  }
+
+  header {
+    margin: 0;
+    padding: 1rem;
   }
 
   .user-action {
@@ -153,7 +164,7 @@ footer {
 }
 
 body {
-  background-image: url("/images/Black_Forest_Sundae.png");
+  background-image: url("/images/profile_backgorund.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -44,7 +44,7 @@ register.addEventListener("submit", async (e) => {
             success.textContent = data.message;
             failure.style.display = "none";
             success.style.display = "flex";
-            let time_limit = Date.now() + 1000 * 60 * 2;
+            let time_limit = Date.now() + 1000 * 60 * 20
             localStorage.setItem("userEmail", email);
             localStorage.setItem("exp", time_limit);
             // After 2 sec redirect to home page

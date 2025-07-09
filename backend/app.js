@@ -45,7 +45,7 @@ app.get("/icescoop/account", (req, res) => {
 });
 
 // User account details
-app.get("/icescoop/acount/:user_email", async (req, res) => {
+app.get("/icescoop/account/:user_email", async (req, res) => {
     let user_email = req.params.user_email;
     try {
         let { rows } = await pool.query("select id, email, address, pin_code from users where email = $1", [user_email]);
@@ -54,6 +54,7 @@ app.get("/icescoop/acount/:user_email", async (req, res) => {
             return;
         }
         else {
+            console.log(rows);
             res.status(200).json({ message: rows });
         }
     } catch (err) {

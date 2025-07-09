@@ -1,26 +1,52 @@
-let login = document.getElementById("login-btn");
-let account = document.getElementById("account-btn");
-let mobile_login = document.getElementById("mobile-login");
-let mobile_account = document.getElementById("mobile-account");
+function updateAuthUI() {
+  const login = document.getElementById("login-btn");
+  const account = document.getElementById("account-btn");
+  const mobile_login = document.getElementById("mobile-login");
+  const mobile_account = document.getElementById("mobile-account");
 
-let email = localStorage.getItem("userEmail");
-let exp = localStorage.getItem("exp");
-if (exp && Number(exp) <= Date.now()) {
-  // Remove the session markers
-  localStorage.removeItem("userEmail");
-  localStorage.removeItem("exp");
-  login.style.display = "flex";
-  mobile_login.style.display = "flex";
-} else if (exp && Number(exp) > Date.now()) {
-  account.style.display = "flex";
-  mobile_account.style.display = "flex";
-} else {
-  login.style.display = "flex";
-  mobile_login.style.display = "flex";
+  const email = localStorage.getItem("userEmail");
+  const exp = localStorage.getItem("exp");
+  
+  const isMobile = window.innerWidth < 600;
+
+  // First, hide all buttons
+  login.style.display = "none";
+  account.style.display = "none";
+  mobile_login.style.display = "none";
+  mobile_account.style.display = "none";
+
+  if (exp && Number(exp) <= Date.now()) {
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("exp");
+
+    if (isMobile) {
+      mobile_login.style.display = "block";
+    } else {
+      login.style.display = "inline-block";
+    }
+  } else if (exp && Number(exp) > Date.now()) {
+    if (isMobile) {
+      mobile_account.style.display = "block";
+    } else {
+      account.style.display = "inline-block";
+    }
+  } else {
+    if (isMobile) {
+      mobile_login.style.display = "block";
+    } else {
+      login.style.display = "inline-block";
+    }
+  }
 }
 
-function scrollToFlavors() {
-  window.location.href = 'icescoop/flavours';
+// Call the function on load
+updateAuthUI();
+
+// Re-evaluate when screen is resized
+window.addEventListener("resize", updateAuthUI);
+
+function navigateToFlavors() {
+  window.location.href = "/icescoop/flavours";
 }
 
 // Mobile menu functionality
