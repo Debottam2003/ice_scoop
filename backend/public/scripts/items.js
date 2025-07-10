@@ -172,6 +172,9 @@ async function getData() {
                         alertDiv.id = "alert";
                         body.prepend(alertDiv);
                         alertDiv.textContent = "Login First to Add to Cart!";
+                        setTimeout(()=>{
+                            alertDiv.remove();
+                        },2000);
                     }
                 });
             });
