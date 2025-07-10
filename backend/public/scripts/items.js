@@ -6,12 +6,56 @@ let body = document.querySelector("body");
 let container = document.getElementById("items-container");
 let choice = document.getElementById("choice");
 let choice_img = document.getElementById("choice-img");
+let choice_name = document.getElementById("choice-name");
 let choice_description = document.getElementById("choice-description");
 let regular = document.getElementById("regular");
 let standard = document.getElementById("standard");
 let premium = document.getElementById("premium");
 let decreaseBTN = document.getElementById("decrease");
 let increaseBTN = document.getElementById("increase");
+let add = document.getElementById("choice-add");
+let choice_radio = document.getElementById("choice-radio");
+
+let orders = [];
+
+// Add to cart function
+function cartADD() {
+    // const selectedRadio = document.querySelector('input[name="quality"]:checked');
+    // if (selectedRadio) {
+    //   console.log("Selected value:", selectedRadio.value);
+    // }
+    let select = false;
+    let total = document.getElementById("total-no");
+    let reg = document.getElementsByName("quality");
+    // console.log(reg);
+    let item = {};
+    item["image"] = choice_img.src;
+    item["name"] = choice_name.textContent;
+    for (let i = 0; i < reg.length; i++) {
+        // console.log(reg);
+        if (reg[i].checked) {
+            item["type"] = reg[i].value;
+            // console.log(reg[i].value);
+            if (reg[i].value === "Regular") {
+                item["price"] = document.getElementById("regular").textContent;
+            } else if (reg[i].value === "Standard") {
+                item["price"] = document.getElementById("standard").textContent;
+            } else if (reg[i].value === "Premium") {
+                item["price"] = document.getElementById("premium").textContent;
+            }
+            select = true;
+            break;
+        }
+    }
+    if (select === false) {
+        alert("Choose Type");
+    }
+    item["total"] = total.textContent;
+    item["date"] = new Date().toLocaleDateString();
+    item["time"] = new Date().toLocaleTimeString();
+    orders.push(item);
+    alert(JSON.stringify(orders));
+}
 
 function decrease() {
     let total = document.getElementById("total-no");
@@ -111,6 +155,7 @@ async function getData() {
                             } else {
                                 let data = await response.json();
                                 let icecreamData = data.message;
+                                choice_name.textContent = icecreamData[0].name.replaceAll("_", " ");
                                 choice_img.src = icecreamData[0].image;
                                 choice_description.textContent = icecreamData[0].description;
                                 // console.log(icecreamData[0].regular_price);

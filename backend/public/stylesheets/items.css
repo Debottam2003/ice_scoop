@@ -453,3 +453,8 @@ footer {
 #cart-div {
   display: flex;
 }
+
+#choice-name  {
+  text-align: center;
+  color: #e91e63;
+}
