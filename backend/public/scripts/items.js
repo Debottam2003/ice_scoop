@@ -6,8 +6,14 @@ if (exp && Number(exp) <= Date.now()) {
     localStorage.removeItem("exp");
 }
 
+// Go back to home
 function Goback() {
     window.location.href = '/icescoop';
+}
+
+// Go to cart
+function goToCart() {
+    window.location.href = '/icescoop/cart';
 }
 
 let body = document.querySelector("body");
@@ -160,8 +166,6 @@ async function getData() {
                             choice.style.display = "none";
                             let response = await fetch(`http://localhost:3333/icescoop/foundicecream/${icecream_id}`);
                             if (!response.ok) {
-                                choice.innerHTML = "<h2>Something went wrong</h2>";
-                                choice.style.display = "flex";
                                 return;
                             } else {
                                 let data = await response.json();
@@ -185,7 +189,7 @@ async function getData() {
                         alertDiv.textContent = "Login First to Add to Cart!";
                         setTimeout(() => {
                             alertDiv.remove();
-                        }, 3000);
+                        }, 2000);
                     }
                 });
             });
@@ -197,3 +201,54 @@ async function getData() {
 }
 
 getData();
+
+async function search() {
+    let icecreamName = document.getElementById("sb").value;
+    document.getElementById("sb").value = "";
+    // let string = "ice scoop special";
+    // console.log(string.includes("special"));
+    let alertDiv = document.getElementById("alert");
+    if (alertDiv) {
+        // body.removeChild(alertDiv);
+        alertDiv.remove();
+    }
+    let email = localStorage.getItem("userEmail");
+    let exp = localStorage.getItem("exp");
+    if (exp && email) {
+        try {
+            choice.style.display = "none";
+            let response = await fetch(`http://localhost:3333/icescoop/foundicecream/name/${icecreamName}`);
+            if (!response.ok) {
+                let alertDiv = document.createElement("div");
+                alertDiv.id = "alert";
+                body.prepend(alertDiv);
+                alertDiv.textContent = "Nothing Found";
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 2000);
+                return;
+            } else {
+                let data = await response.json();
+                let icecreamData = data.message;
+                choice_name.textContent = icecreamData[0].name.replaceAll("_", " ");
+                choice_img.src = icecreamData[0].image;
+                choice_description.textContent = icecreamData[0].description;
+                // console.log(icecreamData[0].regular_price);
+                regular.textContent = `${icecreamData[0].regular_price}`;
+                standard.textContent = `${icecreamData[0].standard_price}`;
+                premium.textContent = `${icecreamData[0].premium_price}`;
+                choice.style.display = "flex";
+            }
+        } catch (err) {
+            console.log("something went wrong");
+        }
+    } else {
+        let alertDiv = document.createElement("div");
+        alertDiv.id = "alert";
+        body.prepend(alertDiv);
+        alertDiv.textContent = "Login First to Add to Cart!";
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 2000);
+    }
+}

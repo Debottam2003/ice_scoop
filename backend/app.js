@@ -164,6 +164,24 @@ app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     }
 });
 
+app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
+    try {
+        let icecreamName = req.params.icecreamName;
+        console.log(icecreamName);
+        let { rows } = await pool.query(
+            `SELECT * FROM icecreams WHERE name ILIKE $1 LIMIT 1`,
+            [`%${icecreamName}%`]
+        );
+        if (rows.length === 0) {
+            res.status(400).json({ message: "Nothing Found" });
+        } else {
+            res.status(200).json({ message: rows });
+        }
+    } catch (err) {
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
 // Database connection then listen and serve
 try {
     await pool.connect()

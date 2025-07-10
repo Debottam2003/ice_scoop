@@ -2,6 +2,10 @@ function Goback() {
     window.location.href = '/icescoop';
 }
 
+function goToCart() {
+    window.location.href = '/icescoop/cart';
+}
+
 let email = localStorage.getItem("userEmail");
 let exp = localStorage.getItem("exp");
 if (exp && Number(exp) <= Date.now()) {
@@ -57,7 +61,7 @@ logout.addEventListener("click", async () => {
                 alert(data.message);
                 localStorage.removeItem("userEmail");
                 localStorage.removeItem("exp");
-                setTimeout(() =>{
+                setTimeout(() => {
                     window.location.href = "/icescoop";
                 }, 500);
             }
