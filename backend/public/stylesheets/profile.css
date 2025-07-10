@@ -6,10 +6,14 @@
 }
 
 body {
-  background-image: linear-gradient(to right, #ffe0e0, #fff7c2);
+  /* background-image: linear-gradient(to right, #ffe0e0, #fff7c2); */
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-image: url("/images/profile_backgorund.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 nav {
@@ -173,13 +177,6 @@ main {
 #orders,
 #logout {
   border: 2px solid #fff7c2;
-}
-
-body {
-  background-image: url("/images/profile_backgorund.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 #index {
