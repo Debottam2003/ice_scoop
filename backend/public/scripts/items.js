@@ -1,3 +1,11 @@
+let email = localStorage.getItem("userEmail");
+let exp = localStorage.getItem("exp");
+if (exp && Number(exp) <= Date.now()) {
+    // Remove the session markers
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("exp");
+}
+
 function Goback() {
     window.location.href = '/icescoop';
 }
@@ -20,11 +28,13 @@ let orders = [];
 
 // Add to cart function
 function cartADD() {
-    // const selectedRadio = document.querySelector('input[name="quality"]:checked');
-    // if (selectedRadio) {
-    //   console.log("Selected value:", selectedRadio.value);
-    // }
-    let select = false;
+    const selectedRadio = document.querySelector('input[name="quality"]:checked');
+    if (!selectedRadio) {
+        // console.log("Selected value:", selectedRadio.value);
+        alert("Select the type");
+        return;
+    }
+    // let select = false;
     let total = document.getElementById("total-no");
     let reg = document.getElementsByName("quality");
     // console.log(reg);
@@ -43,17 +53,18 @@ function cartADD() {
             } else if (reg[i].value === "Premium") {
                 item["price"] = document.getElementById("premium").textContent;
             }
-            select = true;
+            // select = true;
             break;
         }
     }
-    if (select === false) {
-        alert("Choose Type");
-    }
+    // if (select === false) {
+    //     alert("Choose Type");
+    // }
     item["total"] = total.textContent;
     item["date"] = new Date().toLocaleDateString();
     item["time"] = new Date().toLocaleTimeString();
     orders.push(item);
+    localStorage.setItem("cart", orders);
     alert(JSON.stringify(orders));
 }
 
@@ -172,9 +183,9 @@ async function getData() {
                         alertDiv.id = "alert";
                         body.prepend(alertDiv);
                         alertDiv.textContent = "Login First to Add to Cart!";
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             alertDiv.remove();
-                        },2000);
+                        }, 3000);
                     }
                 });
             });
