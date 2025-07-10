@@ -246,7 +246,7 @@ async function search() {
         let alertDiv = document.createElement("div");
         alertDiv.id = "alert";
         body.prepend(alertDiv);
-        alertDiv.textContent = "Login First to Add to Cart!";
+        alertDiv.textContent = "Login First to Search";
         setTimeout(() => {
             alertDiv.remove();
         }, 2000);
