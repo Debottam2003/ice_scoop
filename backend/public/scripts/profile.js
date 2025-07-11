@@ -5,7 +5,9 @@ function Goback() {
 function goToCart() {
     window.location.href = '/icescoop/cart';
 }
-
+function goOrder() {
+    window.location.href = `/icescoop/orders`;
+}
 let email = localStorage.getItem("userEmail");
 let exp = localStorage.getItem("exp");
 if (exp && Number(exp) <= Date.now()) {
