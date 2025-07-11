@@ -3,12 +3,15 @@ import pool from './db.js'
 import cors from "cors"
 import { fileURLToPath } from "url"
 import path from "path"
+import transporter from "./mail.js"
 
 let __filename = fileURLToPath(import.meta.url);
 let __dirname = path.dirname(__filename);
 
 // console.log(__filename);
 // console.log(__dirname);
+
+let usersOTP = {};
 
 let app = express();
 app.use(cors());
@@ -52,6 +55,11 @@ app.get("/icescoop/orders", (req, res) => {
 // Cart Page
 app.get("/icescoop/cart", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "cart.html"));
+});
+
+// Forgot Password Page
+app.get("/icescoop/forgotpassword", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "forgotpassword.html"));
 });
 
 // Error page
@@ -128,6 +136,60 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
     }
 });
 
+// Send OTP
+app.post("/icescoop/otp", express.json(), (req, res) => {
+    let { email } = req.body;
+    if (!email) {
+        return res.status(400).send('Error Sending OTP');
+    }
+    // send OTP
+    const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random OTP
+    usersOTP[email] = otp;
+    console.log(usersOTP);
+    console.log(otp);
+    // Send the email
+    const mailOptions = {
+        from: 'debsoumya60812@gmail.com',
+        to: email,
+        replyTo: 'debsoumya60812@gmail.com',
+        subject: 'Your OTP for Password Reset',
+        text: `Your OTP code is: ${otp}`,
+        html: `
+            <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 30px;">
+                <div style="max-width: 400px; margin: auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 24px;">
+                    <h2 style="color:rgb(7, 143, 39); text-align: center; margin-bottom: 16px;">Your OTP Code</h2>
+                    <p style="font-size: 16px; color: #333; text-align: center;">Use the following OTP to proceed:</p>
+                    <div style="font-size: 32px; font-weight: bold; color: #2d8cf0; background: #f0f7ff; border-radius: 6px; padding: 16px; text-align: center; letter-spacing: 6px; margin: 20px 0;">
+                        ${otp}
+                    </div>
+                    <p style="font-size: 14px; color: #888; text-align: center;">This OTP is valid for a single use only.</p>
+                </div>
+            </div>
+        `
+    };
+
+    transporter.verify((error, success) => {
+        if (error) {
+            console.error('❌ Transporter Configuration Error:', error.message);
+        } else {
+            console.log('✅ Email server is ready to send messages.');
+        }
+    });
+    // console.log(mailOptions);
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error.message);
+            return res.status(500).json({ message: 'Error sending OTP' });
+        }
+        res.status(200).json({ message: 'OTP sent to Your Email id' });
+    });
+});
+
+// Forgot password
+app.post("/icescoop/resetpassword", express.json(), (req, res) => {
+
+});
+
 // Logout get route
 app.get("/icescoop/logout/:user_email", async (req, res) => {
     let user_email = req.params.user_email;
@@ -169,6 +231,7 @@ app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     }
 });
 
+// Search Icecream by name 
 app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
     try {
         let icecreamName = req.params.icecreamName;

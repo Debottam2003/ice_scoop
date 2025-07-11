@@ -8,23 +8,27 @@ if (exp && Number(exp) <= Date.now()) {
     window.location.href = "/icescoop";
 }
 
-let login = document.getElementById("login-form");
+let form = document.getElementById("login-form");
 let failure = document.getElementById("failure");
 let success = document.getElementById("success");
+let sendOTP = document.getElementById("send-otp");
 
-login.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+sendOTP.addEventListener("click", async () => {
+    console.log("send otp ready");
+    email = document.getElementById("email").value;
+    if (!email) {
+        alert("Enter your email");
+        return;
+    }
     try {
         failure.style.display = "none";
         success.style.display = "none";
-        let response = await fetch("http://localhost:3333/icescoop/userLogin", {
+        let response = await fetch("http://localhost:3333/icescoop/otp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email })
         });
         if (!response.ok) {
             let data = await response.json();
@@ -32,29 +36,15 @@ login.addEventListener("submit", async (e) => {
             failure.textContent = data.message;
             failure.style.display = "flex";
             return;
-        }
-        else {
+        } else {
             let data = await response.json();
+            console.log(data.message);
             success.textContent = data.message;
             failure.style.display = "none";
             success.style.display = "flex";
-            let time_limit = Date.now() + 1000 * 60 * 20;
-            localStorage.setItem("userEmail", email);
-            localStorage.setItem("exp", time_limit);
-            // After 1.5 sec redirect to home page
-            setTimeout(() => {
-                success.style.display = "none";
-                window.location.href = "/icescoop"
-            }, 1500);
+            sendOTP.textContent = "Resend OTP"
         }
     } catch (err) {
-        failure.textContent = "Something went wrong⚠️";
-        failure.style.display = "flex";
+        // console.log(err.message);
     }
 });
-
-let forgotPassword = document.getElementById("forgot-password");
-forgotPassword.addEventListener("click", (e) => {
-    window.location.href = "/icescoop/forgotpassword";
-});
-
