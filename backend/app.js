@@ -53,7 +53,10 @@ app.get("/icescoop/orders", (req, res) => {
 app.get("/icescoop/cart", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "cart.html"));
 });
-
+// order page
+app.get("/icescoop/orders", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "orders.html"));
+});
 // Error page
 app.get("/icescoop/error", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "error.html"));
@@ -186,7 +189,6 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-
 // Database connection then listen and serve
 try {
     await pool.connect()

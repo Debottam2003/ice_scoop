@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <title>orders</title>
 </head>
 <body>
-    <h1>This is the Orders page</h1>
+<header>
+    <div class="logo"><h1>Orders</h1></div>
+    <nav class="main-nav">
+      <div class="nav-container">
+        <!-- <div class="search-container">
+          <div class="search-box">
+            <input type="text" name="search" id="sb" placeholder="Search my flavors...">
+            <button type="button" id="search-btn"><img src="/images/search.ico" alt="search icon" id="search-icon"></button>
+          </div>
+        </div> -->
+        <button class="Goback" onclick="GoAcc()">Account</button>
+        <button class="Goback" onclick="Goback()">Home</button>
+    </nav>
+  </header>
+
+  <main>
+
+<section id="orders-section">
+<div class="order-item">
+    <img src="/images/Black_Forest_Sundae.png" class="item-img">
+    <div class="item-name">Black Forest Sundae</div>
+    <div class="item-no">2</div>
+    <div class="item-quantity">Regular</div>
+    <div class="item-cost">Rs.100</div>
+    <div class="item-date">--/--/--</div>
+</div>
+
+
+<div class="order-item">
+    <img src="/images/Cookie_Monster.png" class="item-img">
+    <div class="item-name">Cookie Monster</div>
+    <div class="item-no">2</div>
+    <div class="item-quantity">Regular</div>
+    <div class="item-cost">Rs.100</div>
+    <div class="item-date">--/--/--</div>
+</div>
+
+
+<div class="order-item">
+    <img src="/images/Fresh_Fruit_&_Nuts.png" class="item-img">
+    <div class="item-name">Fresh Fruit & Nuts</div>
+    <div class="item-no">2</div>
+    <div class="item-quantity">Regular</div>
+    <div class="item-cost">Rs.100</div>
+    <div class="item-date">--/--/--</div>
+</div>
+
+
+      </section>
+      <script src="/scripts/orders.js"></script>
+    </main>
 </body>
 </html>
