@@ -31,6 +31,10 @@ let add = document.getElementById("choice-add");
 let choice_radio = document.getElementById("choice-radio");
 
 let orders = [];
+let cartData = localStorage.getItem("cart");
+if(cartData){
+    orders=JSON.parse(cartData);
+}else orders=[];
 
 // Add to cart function
 function cartADD() {
