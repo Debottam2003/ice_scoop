@@ -137,7 +137,7 @@ async function getData() {
 
                 let addCart = document.createElement("button");
                 addCart.classList.add("card-button");
-                addCart.textContent = "Add To Cart";
+                addCart.textContent = "Check Out";
                 addCart.id = icecream.icecream_id;
 
                 icecreamDiv.appendChild(details);

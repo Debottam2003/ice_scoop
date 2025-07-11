@@ -47,11 +47,11 @@ register.addEventListener("submit", async (e) => {
             let time_limit = Date.now() + 1000 * 60 * 20
             localStorage.setItem("userEmail", email);
             localStorage.setItem("exp", time_limit);
-            // After 2 sec redirect to home page
+            // After 1.5 sec redirect to home page
             setTimeout(() => {
                 success.style.display = "none";
                 window.location.href = "/icescoop"
-            }, 2000);
+            }, 1500);
         }
     } catch (err) {
         failure.textContent = "Something went wrong⚠️";

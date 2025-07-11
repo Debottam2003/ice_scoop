@@ -14,9 +14,10 @@ if (exp && Number(exp) <= Date.now()) {
     localStorage.removeItem("exp");
     window.location.href = "/icescoop";
 } else if (exp && exp > Date.now()) {
-
+    document.querySelector("body").style.display = "flex";
 } else {
-    window.location.href = "/icescoop";
+    // window.location.href = "/icescoop";
+    window.location.href = "/icescoop/error";
 }
 
 let image = document.getElementById("userImg");

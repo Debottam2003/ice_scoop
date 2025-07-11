@@ -1,4 +1,5 @@
     body {
+      display: none;
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #ffe0e0, #fff7c2);

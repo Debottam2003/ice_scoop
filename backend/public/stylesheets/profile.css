@@ -7,7 +7,7 @@
 
 body {
   /* background-image: linear-gradient(to right, #ffe0e0, #fff7c2); */
-  display: flex;
+  display: none;
   flex-direction: column;
   height: 100vh;
   background-image: url("/images/profile_backgorund.png");

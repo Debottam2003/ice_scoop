@@ -1,3 +1,4 @@
+document.querySelector("body").style.display = "block";
 function updateAuthUI() {
   const login = document.getElementById("login-btn");
   const account = document.getElementById("account-btn");

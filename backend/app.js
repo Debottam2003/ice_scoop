@@ -54,6 +54,11 @@ app.get("/icescoop/cart", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "cart.html"));
 });
 
+// Error page
+app.get("/icescoop/error", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "error.html"));
+});
+
 // User account details
 app.get("/icescoop/account/:user_email", async (req, res) => {
     let user_email = req.params.user_email;
@@ -129,7 +134,7 @@ app.get("/icescoop/logout/:user_email", async (req, res) => {
     try {
         let { rows } = await pool.query("select id, email from users where email = $1", [user_email]);
         if (rows.length > 0) {
-            res.status(200).json({ message: "success" });
+            res.status(200).json({ message: "You are Successfully logged out" });
         }
     } catch (err) {
         res.status(500).json({ message: "Internal Server error" });
