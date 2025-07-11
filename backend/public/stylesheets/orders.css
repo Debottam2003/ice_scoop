@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url("/images/profile_backgorund.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+nav {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 15px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+  font-size: 2rem;
+  font-family: cursive;
+  color: #e91e63;
+}
+
+.main-nav .Goback,
+#checkout,
+#remove-item {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: #e91e63;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.main-nav .Goback:hover,
+#checkout:hover {
+  background: #c2185b;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  padding: 2rem 1rem;
+}
+#orders-section {
+  width: 80%;
+  min-width: 300px;
+  max-width: 900px;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  color: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 15px rgba(233, 30, 99, 0.3);
+  text-align: center;
+  border: 1px solid white;
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 100px 1.5fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.item-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.item-no,
+.item-quantity,
+.item-cost,
+.item-date {
+  font-size: 1rem;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  #orders-section {
+    width: 95%;
+    min-width: 0;
+    padding: 1.5rem;
+  }
+  .order-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .item-img {
+    margin: 0 auto;
+  }
+
+  .item-name,
+  .item-no,
+  .item-quantity,
+  .item-cost {
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .order-item {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .order-item > div,
+  .order-item > img {
+    text-align: left;
+    padding: 0.25rem 0;
+    width: 100%;
+  }
+
+  .item-img {
+  height:fit-content;
+  border-radius: 20px;
+  object-fit: cover;
+  }
+
+  .item-name::before {
+    content: "Name: ";
+    font-weight: bold;
+  }
+  .item-no::before {
+    content: "Qty: ";
+    font-weight: bold;
+  }
+  .item-quantity::before {
+    content: "Size: ";
+    font-weight: bold;
+  }
+  .item-cost::before {
+    content: "Price: ";
+    font-weight: bold;
+  }
+  .item-date::before {
+    content: "Date: ";
+    font-weight: bold;
+  }
+}
