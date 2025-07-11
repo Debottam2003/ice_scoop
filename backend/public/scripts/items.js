@@ -32,9 +32,9 @@ let choice_radio = document.getElementById("choice-radio");
 
 let orders = [];
 let cartData = localStorage.getItem("cart");
-if(cartData){
-    orders=JSON.parse(cartData);
-}else orders=[];
+if (cartData) {
+    orders = JSON.parse(cartData);
+} else orders = [];
 
 // Add to cart function
 function cartADD() {
@@ -74,8 +74,11 @@ function cartADD() {
     item["date"] = new Date().toLocaleDateString();
     item["time"] = new Date().toLocaleTimeString();
     orders.push(item);
-    localStorage.setItem("cart", orders);
-    alert(JSON.stringify(orders));
+    localStorage.setItem("cart", JSON.stringify(orders));
+    // alert(JSON.stringify(orders));
+    setTimeout(() => {
+        choice.style.display = "none";
+    }, 500);
 }
 
 function decrease() {

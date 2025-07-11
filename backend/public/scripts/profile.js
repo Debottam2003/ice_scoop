@@ -62,6 +62,7 @@ logout.addEventListener("click", async () => {
                 alert(data.message);
                 localStorage.removeItem("userEmail");
                 localStorage.removeItem("exp");
+                localStorage.removeItem("cart");
                 setTimeout(() => {
                     window.location.href = "/icescoop";
                 }, 500);

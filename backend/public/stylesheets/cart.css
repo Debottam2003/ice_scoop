@@ -66,9 +66,7 @@ main {
 }
 
 #cart-section {
-  width: 80%;
-  min-width: 300px;
-  max-width: 900px;
+  width: 90%;
   background: transparent;
   backdrop-filter: blur(20px);
   color: white;
@@ -88,6 +86,7 @@ main {
   margin: 5px 0;
   padding: 6px;
   flex-wrap: wrap;
+  border-bottom: 0.2px solid rgba(255, 255, 255, 0.684);
 }
 
 #item-img {
@@ -99,7 +98,7 @@ main {
 }
 
 #item-name {
-  font-size: xx-large;
+  font-size: large;
   word-break: break-word;
 }
 
