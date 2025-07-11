@@ -7,7 +7,7 @@ function updateAuthUI() {
 
   const email = localStorage.getItem("userEmail");
   const exp = localStorage.getItem("exp");
-  
+
   const isMobile = window.innerWidth < 600;
 
   // First, hide all buttons
