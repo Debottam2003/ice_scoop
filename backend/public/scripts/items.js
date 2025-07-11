@@ -259,3 +259,8 @@ async function search() {
         }, 2000);
     }
 }
+
+// Cart item increment
+function itemIncrement() {
+
+}

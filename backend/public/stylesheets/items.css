@@ -28,8 +28,8 @@ header {
 
 #close {
   position: absolute;
-  top: -30px;
-  right: -30px;
+  top: -10px;
+  right: 0px;
   color: #e91e63;
   border: none;
   padding: 0.5rem;
@@ -457,7 +457,7 @@ footer {
   display: flex;
 }
 
-#choice-name  {
+#choice-name {
   text-align: center;
   color: #e91e63;
 }

@@ -15,7 +15,6 @@ body {
   background-size: cover;
 }
 
-
 nav {
   justify-content: center;
   align-items: center;
@@ -140,7 +139,6 @@ main {
 }
 
 @media (max-width: 600px) {
-
   .order-item {
     grid-template-columns: 1fr;
     text-align: left;
@@ -160,9 +158,9 @@ main {
   }
 
   .item-img {
-  height:fit-content;
-  border-radius: 20px;
-  object-fit: cover;
+    height: fit-content;
+    border-radius: 20px;
+    object-fit: cover;
   }
 
   .item-name::before {
@@ -184,5 +182,31 @@ main {
   .item-date::before {
     content: "Date: ";
     font-weight: bold;
+  }
+}
+
+nav {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* Added for responsiveness */
+  padding: 1rem;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Optional: improves visibility */
+}
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-container {
+    display: flex;
+    gap: 15px;
   }
 }

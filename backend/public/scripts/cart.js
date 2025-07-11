@@ -19,7 +19,10 @@ let total = 0;
 
 if (cartData) {
   cartItems = JSON.parse(cartData);
-} else cartItems = [];
+} else {
+  cartItems = [];
+  document.getElementById("cart-section").innerHTML = `<h2>Cart is Empty</h2>`;
+}
 
 
 for (let i = 0; i < cartItems.length; i++) {
@@ -64,7 +67,7 @@ for (let i = 0; i < cartItems.length; i++) {
 document.getElementById("total-price").textContent += " " + total;
 
 function Goback() {
-  window.location.href = "/icescoop";
+  window.location.href = "/icescoop/flavours";
 }
 
 function GoAcc() {

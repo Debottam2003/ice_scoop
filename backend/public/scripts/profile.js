@@ -59,6 +59,8 @@ logout.addEventListener("click", async () => {
             let response = await fetch(`http://localhost:3333/icescoop/logout/${email}`);
             if (!response.ok) {
                 alert("Something went wrong!");
+                let data = await response.json();
+                console.log(data.message);
             } else {
                 let data = await response.json();
                 alert(data.message);

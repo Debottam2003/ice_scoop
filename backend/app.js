@@ -4,6 +4,7 @@ import cors from "cors"
 import { fileURLToPath } from "url"
 import path from "path"
 import transporter from "./mail.js"
+import internalError from "./internalError.js"
 
 let __filename = fileURLToPath(import.meta.url);
 let __dirname = path.dirname(__filename);
@@ -81,7 +82,8 @@ app.get("/icescoop/account/:user_email", async (req, res) => {
             res.status(200).json({ message: rows });
         }
     } catch (err) {
-        res.status(500).json({ message: "Internal Server error" });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 })
 
@@ -109,7 +111,8 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
             }
         }
     } catch (err) {
-        res.status(500).json({ message: "Internal Server error." });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
@@ -132,7 +135,8 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
         }
     } catch (err) {
         // console.log(err.message);
-        res.status(500).json({ message: "Internal server error" });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
@@ -185,9 +189,31 @@ app.post("/icescoop/otp", express.json(), (req, res) => {
     });
 });
 
-// Forgot password
-app.post("/icescoop/resetpassword", express.json(), (req, res) => {
-
+// OTP verifier patch route and update password
+app.patch("/icescoop/resetpassword", express.json(), async (req, res) => {
+    let { email, newPassword, otp } = req.body;
+    if (!email || !newPassword || !otp) {
+        res.status(400).json({ message: "Invalid Credentials Use Resend OTP" });
+    }
+    try {
+        let { rows } = await pool.query("select id, email from users where email = $1", [email]);
+        if (rows.length === 0) {
+            res.status(400).json({ message: "This is not a Registered email" });
+            return;
+        }
+        if (Number(otp) === usersOTP[email]) {
+            await pool.query("update users set password = $1 where email = $2", [newPassword, email]);
+            res.status(200).json({ message: "Password reset Successful" });
+        } else {
+            res.status(400).json({ message: "Wrong OTP try Resend OTP" });
+        }
+    } catch (err) {
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
+    } finally {
+        delete usersOTP.email;
+        // delete usersOTP[email];
+    }
 });
 
 // Logout get route
@@ -199,7 +225,8 @@ app.get("/icescoop/logout/:user_email", async (req, res) => {
             res.status(200).json({ message: "You are Successfully logged out" });
         }
     } catch (err) {
-        res.status(500).json({ message: "Internal Server error" });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
@@ -211,9 +238,8 @@ app.get("/icescoop/icecreams", async (req, res) => {
             message: rows // array of objects
         });
     } catch (err) {
-        res.status(500).json({
-            message: "Internal server error"
-        });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
@@ -227,7 +253,8 @@ app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
             message: rows
         });
     } catch (err) {
-        res.status(500).json({ message: "Internal server error" });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
@@ -246,7 +273,8 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
             res.status(200).json({ message: rows });
         }
     } catch (err) {
-        res.status(500).json({ message: "Internal Server Error" });
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
     }
 });
 
