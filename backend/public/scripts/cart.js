@@ -1,3 +1,11 @@
+function Goback() {
+  window.location.href = "/icescoop/flavours";
+}
+
+function GoAcc() {
+  window.location.href = "/icescoop/account";
+}
+
 let email = localStorage.getItem("userEmail");
 let exp = localStorage.getItem("exp");
 if (exp && Number(exp) <= Date.now()) {
@@ -95,11 +103,3 @@ function bringCartData() {
 }
 
 bringCartData();
-
-function Goback() {
-  window.location.href = "/icescoop/flavours";
-}
-
-function GoAcc() {
-  window.location.href = "/icescoop/account";
-}

@@ -1,4 +1,4 @@
-import express from "express"
+import express, { response } from "express"
 import pool from './db.js'
 import cors from "cors"
 import { fileURLToPath } from "url"
@@ -242,6 +242,32 @@ app.get("/icescoop/icecreams", async (req, res) => {
         internalError(req, res);
     }
 });
+
+// fetch all order table data
+app.get("/icescoop/orderData/:user_email", async (req, res) => {
+
+    let user_email = req.params.user_email;
+    // console.log(user_email);
+    try {
+        // to fetch user email
+        let data = await pool.query("select id from users where email = $1",[user_email]);
+        // console.log(data.rows)
+        // to fetch user orders 
+        let { rows } = await pool.query("select orders.orders_id as orderID , icecreams.icecream_id as icecreamID , icecreams.name as name , icecreams.image  as image , items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders,icecreams,items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id AND orders.user_id = $1;",
+        [data.rows[0].id]);
+        if (rows.length > 0) {
+            // console.log(rows);
+            res.status(200).json({ message: rows });
+        }else{
+            res.status(400).json({message:"no data found"});
+        }
+    } catch (err) {
+        // res.status(500).json({ message: "Internal Server error" });
+        internalError(req, res);
+    }
+});
+
+
 
 // Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
