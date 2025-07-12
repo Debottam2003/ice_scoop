@@ -57,11 +57,11 @@ function cartADD() {
             item["type"] = reg[i].value;
             // console.log(reg[i].value);
             if (reg[i].value === "Regular") {
-                item["price"] = document.getElementById("regular").textContent;
+                item["price"] = Number(total.textContent) * Number(document.getElementById("regular").textContent);
             } else if (reg[i].value === "Standard") {
-                item["price"] = document.getElementById("standard").textContent;
+                item["price"] = Number(total.textContent) * Number(document.getElementById("standard").textContent);
             } else if (reg[i].value === "Premium") {
-                item["price"] = document.getElementById("premium").textContent;
+                item["price"] = Number(total.textContent) * Number(document.getElementById("premium").textContent);
             }
             // select = true;
             break;
@@ -121,7 +121,7 @@ async function getData() {
             let data = await response.json();
             console.log("data fetched successfully");
             let icecreamsArray = data.message;
-            
+
             icecreamsArray.forEach((icecream) => {
 
                 // console.log(icecream);
