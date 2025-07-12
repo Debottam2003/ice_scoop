@@ -8,7 +8,7 @@
 body {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
   background-image: url("/images/profile_backgorund.png");
   background-position: center;
@@ -16,9 +16,15 @@ body {
   background-size: cover;
 }
 
-::-webkit-scrollbar {
-  display: none;
+/* Hide scrollbar for Firefox and Webkit browsers */
+#orders-section {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
+#orders-section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 nav {
   justify-content: center;
   align-items: center;

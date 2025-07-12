@@ -10,6 +10,8 @@ h1 {
 }
 
 body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-image: linear-gradient(to right, #ffe0e0, #fff7c2);
 }
 ::-webkit-scrollbar {

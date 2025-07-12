@@ -268,24 +268,35 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
 });
 
 //place order
-app.post("/icescoop/placeorder",express.json(),async (req, res)=>{
+app.post("/icescoop/placeorder", express.json(), async (req, res) => {
     // console.log(req.body);
 
-    let {email,cartData}= req.body;
+    let { email, cartData } = req.body;
 
-    let uid = await pool.query("select id from users where email = $1;",[email]);
-    // console.log(uid)
-    cartData.forEach( async (e)=>{
-    let order_id = await pool.query("insert into orders(user_id,paymentstatus,date,time)values($1,$2,$3,$4)returning orders_id;",
-    [ uid.rows[0].id,"pending",new Date().toLocaleDateString(), new Date().toLocaleTimeString() ]);
+    if (!email && !cartData) {
+        res.status(400).json({ message: "Provide all fields" });
+        return;
+    }
 
-    await pool.query("insert into items (orders_id, icecream_id, quantity, type, price) values($1, $2, $3, $4,$5);",
-    [ order_id.rows[0].orders_id , e.icecream_id , e.total , e.type , e.price ]);
-    
-    });
-    
-    res.status(200);
-    res.send('hello');
+    try {
+        let uid = await pool.query("select id from users where email = $1;", [email]);
+        if (uid.rows.length === 0) {
+            res.status(404).json({ message: "Bad Request" });
+        }
+        // console.log(uid);
+        cartData.forEach(async (e) => {
+            let order_id = await pool.query("insert into orders(user_id,paymentstatus,date,time)values($1,$2,$3,$4)returning orders_id;",
+                [uid.rows[0].id, "pending", new Date().toLocaleDateString(), new Date().toLocaleTimeString()]);
+
+            await pool.query("insert into items (orders_id, icecream_id, quantity, type, price) values($1, $2, $3, $4,$5);",
+                [order_id.rows[0].orders_id, e.icecream_id, e.total, e.type, e.price]);
+
+        });
+        res.status(200);
+        res.send('hello');
+    } catch (err) {
+        internalError(req, res);
+    }
 });
 
 // Fetch one icecream data

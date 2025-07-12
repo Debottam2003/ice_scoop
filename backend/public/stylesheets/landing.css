@@ -1,4 +1,6 @@
 body {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
   display: none;
   margin: 0;
   font-family: "Segoe UI", sans-serif;
