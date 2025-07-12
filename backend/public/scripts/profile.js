@@ -76,4 +76,13 @@ logout.addEventListener("click", async () => {
             alert("Something went wrong!");
         }
     }
-})
+});
+
+// Cart item increment
+function itemIncrement() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    if (cart) {
+        document.getElementById("index").textContent = cart.length;
+    }
+}
+itemIncrement();

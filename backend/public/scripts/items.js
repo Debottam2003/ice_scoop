@@ -78,7 +78,8 @@ function cartADD() {
     // alert(JSON.stringify(orders));
     setTimeout(() => {
         choice.style.display = "none";
-    }, 500);
+        itemIncrement();
+    }, 300);
 }
 
 function decrease() {
@@ -263,5 +264,7 @@ async function search() {
 
 // Cart item increment
 function itemIncrement() {
-
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    document.getElementById("index").textContent = cart.length;
 }
+itemIncrement();
