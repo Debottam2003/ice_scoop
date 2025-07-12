@@ -19,6 +19,7 @@ function updateAuthUI() {
   if (exp && Number(exp) <= Date.now()) {
     localStorage.removeItem("userEmail");
     localStorage.removeItem("exp");
+    localStorage.removeItem("cart");
 
     if (isMobile) {
       mobile_login.style.display = "block";

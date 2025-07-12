@@ -6,6 +6,7 @@ if (exp && exp <= Date.now()) {
     // Remove the session markers
     localStorage.removeItem("userEmail");
     localStorage.removeItem("exp");
+    localStorage.removeItem("cart");
 
 } else if (exp && exp > Date.now()) {
     window.location.href = "/icescoop";

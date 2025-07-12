@@ -14,6 +14,7 @@ if (exp && Number(exp) <= Date.now()) {
     // Remove the session markers
     localStorage.removeItem("userEmail");
     localStorage.removeItem("exp");
+    localStorage.removeItem("cart");
     window.location.href = "/icescoop";
 } else if (exp && exp > Date.now()) {
     document.querySelector("body").style.display = "flex";

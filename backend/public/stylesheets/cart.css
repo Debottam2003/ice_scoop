@@ -39,7 +39,7 @@ header {
 
 .main-nav .Goback,
 #checkout,
-#remove-item {
+.remove-item {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background: #e91e63;
@@ -176,7 +176,7 @@ main {
   }
   .main-nav .Goback,
   #checkout,
-  #remove-item {
+  .remove-item {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }

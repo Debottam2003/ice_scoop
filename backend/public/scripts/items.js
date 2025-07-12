@@ -4,6 +4,7 @@ if (exp && Number(exp) <= Date.now()) {
     // Remove the session markers
     localStorage.removeItem("userEmail");
     localStorage.removeItem("exp");
+    localStorage.removeItem("cart");
 }
 
 // Go back to home
