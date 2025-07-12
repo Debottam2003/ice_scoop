@@ -15,6 +15,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 nav {
   justify-content: center;

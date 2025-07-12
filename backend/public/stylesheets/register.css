@@ -13,6 +13,9 @@
     border-radius: 10px;
     border: 2px solid rgb(111, 5, 5);
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 #success {
     display: none;

@@ -34,7 +34,7 @@ function updateOrders(order) {
 
     let orderDate = document.createElement('div');
     orderDate.classList.add('item-date');
-    orderDate.textContent = order.date;
+    orderDate.textContent = "Date "+order.date;
 
     orderItem.appendChild(itemImg);
     orderItem.appendChild(itemName);
