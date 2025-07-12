@@ -30,13 +30,17 @@ function bringCartData() {
   if (cartData) {
     cartItems = JSON.parse(cartData);
     if (cartItems.length === 0) {
-      document.getElementById("cart-section").innerHTML = `<h2>Cart is Empty</h2>`;
+      document.getElementById(
+        "cart-section"
+      ).innerHTML = `<h2>Cart is Empty</h2>`;
       document.getElementById("total-price").textContent = " ₹0";
       return;
     }
   } else {
     cartItems = [];
-    document.getElementById("cart-section").innerHTML = `<h2>Cart is Empty</h2>`;
+    document.getElementById(
+      "cart-section"
+    ).innerHTML = `<h2>Cart is Empty</h2>`;
     document.getElementById("total-price").textContent = "₹0";
     return;
   }
@@ -58,7 +62,7 @@ function bringCartData() {
 
     let item_quantity = document.createElement("p");
     item_quantity.id = "item-quantity";
-    item_quantity.textContent = cartItems[i].type;
+    item_quantity.textContent = cartItems[i].type.toUpperCase();
 
     let item_cost = document.createElement("p");
     item_cost.id = "item-cost";
@@ -104,3 +108,31 @@ function bringCartData() {
 }
 
 bringCartData();
+
+document.getElementById("checkout").addEventListener("click", makeOrder);
+
+async function makeOrder() {
+  let cart = localStorage.getItem("cart");
+  let cartData = JSON.parse(cart);
+  try {
+    // console.log("ok");
+    let response = await fetch("http://localhost:3333/icescoop/placeorder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, cartData }),
+    });
+    if (!response.ok) {
+      alert("Couldn't place your order!");
+    } else {
+      alert("Order Placed");
+      localStorage.removeItem("cart");
+      setTimeout(() => {
+        window.location.href = "/icescoop/orders";
+      }, 200);
+    }
+  } catch (err) {
+    console.log("Internal Server error!");
+  }
+}
