@@ -267,8 +267,6 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
     }
 });
 
-
-
 // Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     let icecream_id = req.params.icecream_id;
