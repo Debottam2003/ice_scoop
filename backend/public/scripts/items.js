@@ -122,6 +122,7 @@ async function getData() {
             let data = await response.json();
             console.log("data fetched successfully");
             let icecreamsArray = data.message;
+            
             icecreamsArray.forEach((icecream) => {
 
                 // console.log(icecream);

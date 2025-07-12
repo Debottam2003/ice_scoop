@@ -1,3 +1,11 @@
+function Goback() {
+  window.location.href = "/icescoop/flavours";
+}
+
+function GoAcc() {
+  window.location.href = "/icescoop/account";
+}
+
 let email = localStorage.getItem("userEmail");
 let exp = localStorage.getItem("exp");
 if (exp && Number(exp) <= Date.now()) {
@@ -87,12 +95,11 @@ function bringCartData() {
 bringCartData();
 
 
-document.getElementById("total-price").textContent += " " + total;
+document.getElementById("total-price").textContent +=" " + total;
 
-function Goback() {
-  window.location.href = "/icescoop/flavours";
-}
+function placeOrder(){
+  let cart= document.querySelector("#cart-section");
+  let cart_items = cart.childNodes;
 
-function GoAcc() {
-  window.location.href = "/icescoop/account";
+  // to be done
 }
