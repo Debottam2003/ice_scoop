@@ -4,8 +4,9 @@ if (exp && Number(exp) <= Date.now()) {
   // Remove the session markers
   localStorage.removeItem("userEmail");
   localStorage.removeItem("exp");
+  localStorage.removeItem("cart");
   window.location.href = "/icescoop/login";
-} else if (!exp & !email) {
+} else if (!exp && !email) {
   // window.location.href = "/icescoop/error";
   alert("login first");
   window.location.href = "/icescoop/login";
@@ -13,20 +14,21 @@ if (exp && Number(exp) <= Date.now()) {
   document.querySelector("body").style.display = "flex";
 }
 
-let cartItems;
-let total = 0;
-
 function bringCartData() {
+  let cartItems;
+  let total = 0;
   // Load the cart data from the local storage
   let cartData = localStorage.getItem("cart");
   if (cartData) {
     cartItems = JSON.parse(cartData);
     if (cartItems.length === 0) {
       document.getElementById("cart-section").innerHTML = `<h2>Cart is Empty</h2>`;
+      document.getElementById("total-price").textContent = " ₹0";
     }
   } else {
     cartItems = [];
     document.getElementById("cart-section").innerHTML = `<h2>Cart is Empty</h2>`;
+    document.getElementById("total-price").textContent = "₹ 0";
   }
   for (let i = 0; i < cartItems.length; i++) {
     let cart_item = document.createElement("div");
@@ -67,12 +69,20 @@ function bringCartData() {
 
     document.getElementById("cart-section").appendChild(cart_item);
   }
+  document.getElementById("total-price").textContent = ` ₹${total}`;
+
+  // Remove items
   let removeButtons = document.querySelectorAll(".remove-item");
   // console.log(removeButtons);
   removeButtons.forEach((rb) => {
     rb.addEventListener("click", (e) => {
       // alert("btn click");
-      cartItems = cartItems.filter((_, index) => {
+      cartItems = cartItems.filter((element, index) => {
+        if (index === Number(e.target.id)) {
+          total -= Number(element.price);
+          document.getElementById("total-price").textContent = "&#8377;" + `${total}`;
+          console.log(element.price);
+        }
         return index !== Number(e.target.id);
       });
       localStorage.setItem("cart", JSON.stringify(cartItems));
@@ -85,9 +95,6 @@ function bringCartData() {
 }
 
 bringCartData();
-
-
-document.getElementById("total-price").textContent += " " + total;
 
 function Goback() {
   window.location.href = "/icescoop/flavours";
