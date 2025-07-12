@@ -1,5 +1,5 @@
 function Goback() {
-    window.location.href = "/icescoop";
+    window.location.href = "/icescoop/flavours";
 }
 function GoAcc() {
     window.location.href = "/icescoop/account";
