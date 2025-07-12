@@ -267,6 +267,17 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
     }
 });
 
+//place order
+app.post("/icescoop/placeorder",express.json(),async (req, res)=>{
+    // console.log(req.body);
+    let {email,cartData}= req.body;
+
+    await pool.query("") // create this......
+
+    res.status(200);
+    res.send('hello');
+});
+
 // Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
     let icecream_id = req.params.icecream_id;

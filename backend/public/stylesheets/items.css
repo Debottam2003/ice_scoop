@@ -135,6 +135,7 @@ header {
   color: white;
   background-color: #e91e63;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Fade-in animation */
@@ -442,6 +443,7 @@ footer {
   height: 30px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 #index {
