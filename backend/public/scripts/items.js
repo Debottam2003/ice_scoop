@@ -51,6 +51,7 @@ function cartADD() {
     let item = {};
     item["image"] = choice_img.src;
     item["name"] = choice_name.textContent;
+    item["icecream_id"] = choice_name.className;
     for (let i = 0; i < reg.length; i++) {
         // console.log(reg);
         if (reg[i].checked) {
@@ -180,6 +181,7 @@ async function getData() {
                                 let data = await response.json();
                                 let icecreamData = data.message;
                                 choice_name.textContent = icecreamData[0].name.replaceAll("_", " ");
+                                choice_name.className = icecreamData[0].icecream_id;
                                 choice_img.src = icecreamData[0].image;
                                 choice_description.textContent = icecreamData[0].description;
                                 // console.log(icecreamData[0].regular_price);
@@ -265,11 +267,13 @@ async function search() {
 // Cart item increment
 function itemIncrement() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    let total=0;
-    cart.forEach((c)=>{
-        total+=Number(c.total);
-    });   
-    document.getElementById("index").textContent = total;
+    let total = 0;
+    if (cart) {
+        cart.forEach((c) => {
+            total += Number(c.total);
+        });
+        document.getElementById("index").textContent = total;
+    }
 }
 itemIncrement();
 
