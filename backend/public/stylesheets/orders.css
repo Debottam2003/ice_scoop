@@ -8,13 +8,17 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 90vh;
+  overflow: hidden;
   background-image: url("/images/profile_backgorund.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 nav {
   justify-content: center;
   align-items: center;
@@ -65,9 +69,11 @@ main {
   padding: 2rem 1rem;
 }
 #orders-section {
+  overflow-y: auto;
   width: 80%;
   min-width: 300px;
   max-width: 900px;
+  height: 80vh;
   background: transparent;
   backdrop-filter: blur(20px);
   color: white;

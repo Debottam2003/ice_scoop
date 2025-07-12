@@ -253,7 +253,7 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
         let data = await pool.query("select id from users where email = $1", [user_email]);
         // console.log(data.rows)
         // to fetch user orders 
-        let { rows } = await pool.query("select orders.orders_id as orderID , icecreams.icecream_id as icecreamID , icecreams.name as name , icecreams.image  as image , items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders,icecreams,items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id AND orders.user_id = $1;",
+        let { rows } = await pool.query("select orders.orders_id as orderID , icecreams.icecream_id as icecreamID , icecreams.name as name , icecreams.image  as image , items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders,icecreams,items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id AND orders.user_id = $1 order by orders.orders_id desc;",
             [data.rows[0].id]);
         if (rows.length > 0) {
             // console.log(rows);
@@ -270,10 +270,20 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
 //place order
 app.post("/icescoop/placeorder",express.json(),async (req, res)=>{
     // console.log(req.body);
+
     let {email,cartData}= req.body;
 
-    await pool.query("") // create this......
+    let uid = await pool.query("select id from users where email = $1;",[email]);
+    // console.log(uid)
+    cartData.forEach( async (e)=>{
+    let order_id = await pool.query("insert into orders(user_id,paymentstatus,date,time)values($1,$2,$3,$4)returning orders_id;",
+    [ uid.rows[0].id,"pending",new Date().toLocaleDateString(), new Date().toLocaleTimeString() ]);
 
+    await pool.query("insert into items (orders_id, icecream_id, quantity, type, price) values($1, $2, $3, $4,$5);",
+    [ order_id.rows[0].orders_id , e.icecream_id , e.total , e.type , e.price ]);
+    
+    });
+    
     res.status(200);
     res.send('hello');
 });

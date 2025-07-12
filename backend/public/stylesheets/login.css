@@ -72,6 +72,9 @@ body {
     justify-content: center;
     padding: 1rem;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 .login-box {
     border: 2px solid white;

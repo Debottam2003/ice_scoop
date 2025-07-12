@@ -112,8 +112,20 @@ bringCartData();
 document.getElementById("checkout").addEventListener("click", makeOrder);
 
 async function makeOrder() {
+
   let cart = localStorage.getItem("cart");
   let cartData = JSON.parse(cart);
+  if(cartData){
+    if(cartData.length===0){
+      alert("Add items first");
+      window.location.href="/icescoop/flavours";
+      return;
+    }
+  }else{ 
+    alert("Add items first");
+    window.location.href="/icescoop/flavours";
+    return;
+  }
   try {
     // console.log("ok");
     let response = await fetch("http://localhost:3333/icescoop/placeorder", {
@@ -136,3 +148,4 @@ async function makeOrder() {
     console.log("Internal Server error!");
   }
 }
+

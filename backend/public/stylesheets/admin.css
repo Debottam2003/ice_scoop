@@ -4,7 +4,9 @@ body {
   background-color: #edf2f7;
   color: #2d3748;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .container {
   max-width: 900px;
   margin: 60px auto;

@@ -12,6 +12,9 @@ h1 {
 body {
   background-image: linear-gradient(to right, #ffe0e0, #fff7c2);
 }
+::-webkit-scrollbar {
+  display: none;
+}
 header {
   display: flex;
   flex-wrap: wrap;
