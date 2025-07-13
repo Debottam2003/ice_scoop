@@ -408,7 +408,7 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
 // all users
 app.get("/icescoop/admin/allusers/:admin_email", async (req, res) => {
   try {
-    let { rows } = await pool.query("select id from users where = $1", [req.params.admin_email]);
+    let { rows } = await pool.query("select id from admin where = $1", [req.params.admin_email]);
     if (rows.length > 0) {
       let data = await pool.query("select id, email, phonenumber, address, pin_code from users");
       res.status(200).json({ message: data.rows });
