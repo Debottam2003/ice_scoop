@@ -114,6 +114,10 @@ document.getElementById("checkout").addEventListener("click", makeOrder);
 
 async function makeOrder() {
 
+  let sure = confirm("Are you sure?");
+  if (!sure) {
+    return;
+  }
   let cart = localStorage.getItem("cart");
   let cartData = JSON.parse(cart);
   if (cartData) {
@@ -143,7 +147,7 @@ async function makeOrder() {
       localStorage.removeItem("cart");
       setTimeout(() => {
         window.location.href = "/icescoop/orders";
-      }, 200);
+      }, 500);
     }
   } catch (err) {
     console.log("Internal Server error!");

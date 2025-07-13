@@ -267,37 +267,59 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
     }
 });
 
-//place order
 app.post("/icescoop/placeorder", express.json(), async (req, res) => {
-    // console.log(req.body);
+    const { email, cartData } = req.body;
 
-    let { email, cartData } = req.body;
-
-    if (!email && !cartData) {
-        res.status(400).json({ message: "Provide all fields" });
-        return;
+    if (!email || !cartData || !Array.isArray(cartData)) {
+        return res.status(400).json({ message: "Provide all fields" });
     }
 
     try {
-        let uid = await pool.query("select id from users where email = $1;", [email]);
-        if (uid.rows.length === 0) {
-            res.status(404).json({ message: "Bad Request" });
+        const userResult = await pool.query("SELECT id FROM users WHERE email = $1;", [email]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ message: "User not found" });
         }
-        // console.log(uid);
-        cartData.forEach(async (e) => {
-            let order_id = await pool.query("insert into orders(user_id,paymentstatus,date,time)values($1,$2,$3,$4)returning orders_id;",
-                [uid.rows[0].id, "pending", new Date().toLocaleDateString(), new Date().toLocaleTimeString()]);
 
-            await pool.query("insert into items (orders_id, icecream_id, quantity, type, price) values($1, $2, $3, $4,$5);",
-                [order_id.rows[0].orders_id, e.icecream_id, e.total, e.type, e.price]);
+        const userId = userResult.rows[0].id;
+        const client = await pool.connect();
 
-        });
-        res.status(200);
-        res.send('hello');
+        try {
+            await client.query('BEGIN');
+
+            for (const item of cartData) {
+                const orderResult = await client.query(
+                    `INSERT INTO orders (user_id, paymentstatus, date, time)
+                     VALUES ($1, $2, $3, $4)
+                     RETURNING orders_id;`,
+                    [userId, "pending", new Date().toLocaleDateString(), new Date().toLocaleTimeString()]
+                );
+
+                const orderId = orderResult.rows[0].orders_id;
+
+                await client.query(
+                    `INSERT INTO items (orders_id, icecream_id, quantity, type, price)
+                     VALUES ($1, $2, $3, $4, $5);`,
+                    [orderId, item.icecream_id, item.total, item.type, item.price]
+                );
+            }
+
+            await client.query('COMMIT');
+            res.status(200).json({ message: "Order placed successfully" });
+
+        } catch (error) {
+            await client.query('ROLLBACK');
+            console.error('Transaction failed:', error);
+            internalError();
+        } finally {
+            client.release();
+        }
     } catch (err) {
-        internalError(req, res);
+        console.error("Database error:", err);
+        internalError();
     }
 });
+
 
 // Fetch one icecream data
 app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
