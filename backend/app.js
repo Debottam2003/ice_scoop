@@ -405,6 +405,8 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
   }
 });
 
+// delete user
+
 // Database connection then listen and serve
 try {
   await pool.connect();
