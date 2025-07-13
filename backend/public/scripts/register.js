@@ -22,6 +22,7 @@ register.addEventListener("submit", async (e) => {
     let password = document.getElementById("password").value;
     let address = document.getElementById("address").value;
     let pin_code = document.getElementById("pin_code").value;
+    let phone = document.getElementById("phone").value;
     console.log(email, password, address, pin_code);
     try {
         failure.style.display = "none";
@@ -31,7 +32,7 @@ register.addEventListener("submit", async (e) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password, address, pin_code })
+            body: JSON.stringify({ email, password, address, pin_code, phone })
         });
         if (!response.ok) {
             let data = await response.json();

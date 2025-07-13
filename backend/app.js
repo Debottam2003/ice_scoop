@@ -142,8 +142,8 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
 // Register POST route
 app.post("/icescoop/userRegister", express.json(), async (req, res) => {
   // console.log(req.body);
-  let { email, password, pin_code, address } = req.body;
-  if (!email || !password || !pin_code || !address) {
+  let { email, password, pin_code, address, phone } = req.body;
+  if (!email || !password || !pin_code || !address || !phone) {
     res.status(400).json({ message: "All fields are required." });
     return;
   }
@@ -156,8 +156,8 @@ app.post("/icescoop/userRegister", express.json(), async (req, res) => {
       return;
     } else {
       await pool.query(
-        "insert into users(email, password, pin_code, address) values($1, $2, $3, $4)",
-        [email, password, pin_code, address]
+        "insert into users(email, password, pin_code, address, phone) values($1, $2, $3, $4, $5)",
+        [email, password, pin_code, address, phone]
       );
       res.status(200).json({ message: "Welcome to Ice Scoop." });
     }
