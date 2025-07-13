@@ -81,10 +81,10 @@ logout.addEventListener("click", async () => {
 // Cart item increment
 function itemIncrement() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    let total=0;
-    cart.forEach((c)=>{
-        total+=Number(c.total);
-    });   
+    let total = 0;
+    cart.forEach((c) => {
+        total += Number(c.total);
+    });
     document.getElementById("index").textContent = total;
 }
 itemIncrement();
