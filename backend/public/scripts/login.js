@@ -39,14 +39,25 @@ login.addEventListener("submit", async (e) => {
             success.textContent = data.message;
             failure.style.display = "none";
             success.style.display = "flex";
-            let time_limit = Date.now() + 1000 * 60 * 20;
-            localStorage.setItem("userEmail", email);
-            localStorage.setItem("exp", time_limit);
-            // After 1.5 sec redirect to home page
-            setTimeout(() => {
-                success.style.display = "none";
-                window.location.href = "/icescoop"
-            }, 1500);
+            if (data.message === "Welcome Back to IceScoop again") {
+                let time_limit = Date.now() + 1000 * 60 * 20;
+                localStorage.setItem("userEmail", email);
+                localStorage.setItem("exp", time_limit);
+                // After 1.5 sec redirect to home page
+                setTimeout(() => {
+                    success.style.display = "none";
+                    window.location.href = "/icescoop"
+                }, 1500);
+            }
+            else if (data.message === "Welcome admin" && response.status === 201) {
+                let time_limit = Date.now() + 1000 * 60 * 20;
+                localStorage.setItem("admin", email);
+                localStorage.setItem("exp", time_limit);
+                setTimeout(() => {
+                    success.style.display = "none";
+                    window.location.href = "/icescoop/admin"
+                }, 1000);
+            }
         }
     } catch (err) {
         failure.textContent = "Something went wrong⚠️";

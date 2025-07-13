@@ -117,6 +117,13 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
   }
   try {
     console.log(email, password);
+    let adminData = await pool.query("select email, password from admin where email = $1", [email]);
+    if (adminData.rows.length > 0) {
+      // console.log(adminData.rows);
+      if (password === adminData.rows[0].password) {
+        return res.status(201).json({ message: "Welcome admin" });
+      }
+    }
     let data = await pool.query(
       "select email, password from users where email = $1",
       [email]

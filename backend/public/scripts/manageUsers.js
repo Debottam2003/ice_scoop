@@ -13,15 +13,15 @@ function addUserData(e) {
     let td3 = document.createElement('td');
     td3.textContent = e.email;
     let td4 = document.createElement('td');
-    let button = document.createElement('button');
-    button.classList.add('d');
-    button.textContent = "DELETE";
-    td4.appendChild(button);
+    td4.textContent = e.address;
+    let td5 = document.createElement('td');
+    td5.textContent = e.pin_code;
 
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    tr.appendChild(td5);
 
     table.appendChild(tr);
 }
