@@ -6,13 +6,24 @@
   font-family: "Segoe UI", sans-serif;
 }
 .back{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     height: 50px;
-    width: 100%;
+    width: 49.8%;
     cursor: pointer;
     background-color: #ad1212;
     color: #ffffff;
     font-size: larger;
+}
+.new{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  width: 49.8%;
+  cursor: pointer;
+  background-color: #38a169;
+  color: #ffffff;
+  font-size: larger;
 }
 
 /* Container styling */
@@ -88,5 +99,9 @@
 }
 #ordersTable tr td .d {
     background-color: grey;
+    color: white;
+}
+#ordersTable tr td .d:hover{
+    background-color: rgb(57, 57, 57);
     color: white;
 }
