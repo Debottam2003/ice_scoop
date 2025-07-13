@@ -283,9 +283,9 @@ window.addEventListener("pageshow", (event) => {
         location.reload();
     }
 });
-
 // normal page load pageshow ✅  but event.persisted ❌
 //page back/forwar pageshow ✅  and event.persisted ✅
+
 window.onscroll = function () {
   const btn = document.getElementById("scrollBtn");
   if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {

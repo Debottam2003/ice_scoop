@@ -60,3 +60,11 @@ register.addEventListener("submit", async (e) => {
         failure.style.display = "flex";
     }
 });
+
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        location.reload();
+    }
+});
+// normal page load pageshow ✅  but event.persisted ❌
+//page back/forwar pageshow ✅  and event.persisted ✅

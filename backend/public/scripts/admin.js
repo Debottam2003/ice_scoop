@@ -7,3 +7,11 @@ else {
     document.querySelectorAll(".admin_id")[0].textContent = admin;
     document.querySelectorAll(".admin_id")[1].textContent = admin;
 }
+
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        location.reload();
+    }
+});
+// normal page load pageshow ✅  but event.persisted ❌
+//page back/forwar pageshow ✅  and event.persisted ✅

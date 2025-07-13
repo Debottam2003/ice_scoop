@@ -277,7 +277,7 @@ app.get("/icescoop/logout/:user_email", async (req, res) => {
 // Fetch all of the icecream data
 app.get("/icescoop/icecreams", async (req, res) => {
   try {
-    let { rows } = await pool.query("select * from icecreams");
+    let { rows } = await pool.query("select * from icecreams where in_stock = TRUE");
     res.status(200).json({
       message: rows, // array of objects
     });
