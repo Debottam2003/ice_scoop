@@ -336,22 +336,20 @@ app.post("/icescoop/placeorder", express.json(), async (req, res) => {
 
     try {
       await client.query("BEGIN");
-
-      for (const item of cartData) {
-        const orderResult = await client.query(
-          `INSERT INTO orders (user_id, paymentstatus, date, time)
+      const orderResult = await client.query(
+        `INSERT INTO orders (user_id, paymentstatus, date, time)
                      VALUES ($1, $2, $3, $4)
                      RETURNING orders_id;`,
-          [
-            userId,
-            "pending",
-            new Date().toLocaleDateString(),
-            new Date().toLocaleTimeString(),
-          ]
-        );
+        [
+          userId,
+          "pending",
+          new Date().toLocaleDateString(),
+          new Date().toLocaleTimeString(),
+        ]
+      );
 
-        const orderId = orderResult.rows[0].orders_id;
-
+      const orderId = orderResult.rows[0].orders_id;
+      for (const item of cartData) {
         await client.query(
           `INSERT INTO items (orders_id, icecream_id, quantity, type, price)
                      VALUES ($1, $2, $3, $4, $5);`,
