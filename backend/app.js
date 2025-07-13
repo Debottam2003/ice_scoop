@@ -59,23 +59,23 @@ app.get("/icescoop/cart", (req, res) => {
 });
 
 //Admin Page
-app.get("/icescoop/admin", (req , res) => {
-    res.sendFile(path.join(__dirname,"pages","admin.html"))
+app.get("/icescoop/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "admin.html"))
 });
 
 //Manage User Page ( Admin )
-app.get("/icescoop/admin/manageusers", (req , res) => {
-    res.sendFile(path.join(__dirname,"pages","manageUsers.html"))
+app.get("/icescoop/admin/manageusers", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "manageUsers.html"))
 });
 
 //Manage Product Page ( Admin )
-app.get("/icescoop/admin/manageproducts", (req , res) => {
-    res.sendFile(path.join(__dirname,"pages","manageProducts.html"))
+app.get("/icescoop/admin/manageproducts", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "manageProducts.html"))
 });
 
 //View Order Page ( Admin )
-app.get("/icescoop/admin/manageorders", (req , res) => {
-    res.sendFile(path.join(__dirname,"pages","manageOrders.html"))
+app.get("/icescoop/admin/manageorders", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "manageOrders.html"))
 });
 
 // Forgot Password Page
@@ -405,7 +405,24 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
   }
 });
 
-// delete user
+// all users
+app.get("/icescoop/admin/allusers/:admin_email", async (req, res) => {
+  try {
+    let { rows } = await pool.query("select id from users where = $1", [req.params.admin_email]);
+    if (rows.length > 0) {
+      let data = await pool.query("select id, email, phonenumber, address, pin_code from users");
+      res.status(200).json({ message: data.rows });
+    } else {
+      res.sendFile(path.join(__dirname, "pages", "error.html"));
+    }
+  } catch (err) {
+    internalError(req, res);
+  }
+});
+
+// update icecream data
+
+// add new ice cream data
 
 // Database connection then listen and serve
 try {
