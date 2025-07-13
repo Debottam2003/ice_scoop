@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/ice scoop logo.png">
+    <link rel="stylesheet" href="/stylesheets/manageUsers.css">
+    <title>Document</title>
+</head>
+<body>
+    <button class="back" onclick=goAdmin()>Go back</button>
+    <div class="orders-container">
+        <table id="ordersTable">
+                <tr>
+                    <th>User ID</th>
+                    <th>Number</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>555-1234</td>
+                    <td>alice@example.com</td>
+                    <td>
+                        <button class="d">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>555-5678</td>
+                    <td>bob@example.com</td>
+                    <td>
+                        <button class="d">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>555-5678</td>
+                    <td>charlie@example.com</td>
+                    <td>
+                        <button class="d">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>555-5678</td>
+                    <td>diana@example.com</td>
+                    <td>
+                        <button class="d">Delete</button>
+                    </td>
+                </tr>
+                
+                <!-- Orders will be dynamically populated here -->
+        </table>
+    </div>
+    <script src="/scripts/manageUsers.js"></script>
+</body>
+</html>
