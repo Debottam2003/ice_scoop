@@ -1,3 +1,8 @@
+let admin = localStorage.getItem("admin");
+if (admin) {
+    window.location.href = "/icescoop/admin";
+}
+
 let email = localStorage.getItem("userEmail");
 let exp = localStorage.getItem("exp");
 if (exp && Number(exp) <= Date.now()) {
@@ -52,7 +57,6 @@ login.addEventListener("submit", async (e) => {
             else if (data.message === "Welcome admin" && response.status === 201) {
                 let time_limit = Date.now() + 1000 * 60 * 20;
                 localStorage.setItem("admin", email);
-                localStorage.setItem("exp", time_limit);
                 setTimeout(() => {
                     success.style.display = "none";
                     window.location.href = "/icescoop/admin"

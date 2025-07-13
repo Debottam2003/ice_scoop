@@ -1,3 +1,8 @@
+let admin = localStorage.getItem("admin");
+if (admin) {
+  window.location.href = "/icescoop/admin";
+}
+
 function Goback() {
   window.location.href = "/icescoop/flavours";
 }
