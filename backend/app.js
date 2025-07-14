@@ -287,6 +287,19 @@ app.get("/icescoop/icecreams", async (req, res) => {
   }
 });
 
+//fetch all iecescreams for (admin)
+app.get("/icescoop/admin/icecreams", async (req, res) => {
+  try {
+    let { rows } = await pool.query("select * from icecreams order by icecream_id;");
+    // if(rows.length>0) console.log('data is here');
+    res.status(200).json({
+      message: rows, // array of objects
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Internal Server error" });
+    internalError(req, res);
+  }
+});
 // fetch all order table data
 app.get("/icescoop/orderData/:user_email", async (req, res) => {
   let user_email = req.params.user_email;
