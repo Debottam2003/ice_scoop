@@ -8,6 +8,18 @@ else {
     document.querySelectorAll(".admin_id")[1].textContent = admin;
 }
 
+let logOut = document.getElementById("log-out-btn");
+logOut.addEventListener("click", () => {
+    let sure = confirm("Are you sure?");
+    if (sure) {
+        localStorage.removeItem("admin");
+        setTimeout(() => {
+            window.location.href = "/icescoop";
+        }, 200);
+
+    }
+});
+
 window.addEventListener("pageshow", (event) => {
     if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
         location.reload();

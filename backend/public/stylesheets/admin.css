@@ -33,7 +33,7 @@ body {
   font-size: 2.5rem;
   margin: 0;
 }
-.admin_id{
+.admin_id {
   color: #ff4b87;
   font-weight: 700;
   cursor: pointer;
@@ -89,4 +89,21 @@ body {
     width: 48px;
     height: 48px;
   }
+}
+
+#log-out-btn {
+  padding: 24px;
+  background-color: #b60505;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#log-out-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
