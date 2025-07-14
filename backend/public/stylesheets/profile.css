@@ -175,6 +175,7 @@ main {
   height: 30px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 #orders,
