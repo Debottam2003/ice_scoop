@@ -9,6 +9,13 @@
 </head>
 <body>
     <button class="back" onclick=goAdmin()>Go back</button>
+    <div id="floating-details">
+        <div>
+        <div><button type="button" id="close">X</button></div>
+        <div id="heading">Order Details</div>
+        <div id="display-order-detail"></div>
+        </div>
+    </div>
     <div class="orders-container">
         <table id="ordersTable">
                 <tr>
@@ -18,9 +25,10 @@
                     <th>Time</th>
                     <th>Payment Status</th>
                     <th>Details</th>
-                    <th>Modify</th>
+                    <!-- <th>Modify</th> -->
                 </tr>
-                <tr>  <!--( for js use )-->
+
+                <!-- <tr>
                     <td>1</td>
                     <td>2</td>
                     <td>2024-06-01</td>
@@ -28,8 +36,8 @@
                     <td>pending</td>
                     <td><button type="button">Details</button></td>
                     <td><button type="button">Mark Paid</button></td>
-                </tr>
-                <!-- Orders will be dynamically populated here -->
+                </tr> -->
+
         </table>
     </div>
     <script src="/scripts/manageOrders.js"></script>

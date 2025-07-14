@@ -299,11 +299,11 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
     // console.log(data.rows)
     // to fetch user orders
     let { rows } = await pool.query(
-      "select orders.orders_id as orderID , icecreams.icecream_id as icecreamID , icecreams.name as name , icecreams.image  as image , items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders,icecreams,items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id AND orders.user_id = $1 order by orders.orders_id desc;",
+      "select orders.orders_id as orderID , icecreams.icecream_id as icecream_id , icecreams.name as name , icecreams.image  as image , items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders,icecreams,items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id AND orders.user_id = $1 order by orders.orders_id desc;",
       [data.rows[0].id]
     );
     if (rows.length > 0) {
-      // console.log(rows);
+      console.log(rows[0]);
       res.status(200).json({ message: rows });
     } else {
       res.status(400).json({ message: "No data Found" });
@@ -440,7 +440,8 @@ app.get("/icescoop/admin/detailedorder/:admin_email/:order_id", async (req, res)
     if (rows.length > 0) {
       let data = await pool.query("select orders.orders_id as orderID, orders.paymentstatus as paymentstatus, icecreams.name as name, items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders, icecreams, items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id and orders.orders_id = $1;", [req.params.order_id]);
       console.log(data.rows[0]);
-      res.status(200).json({ message: data.rows });
+      let total = await pool.query("select sum(items.price) as total_price from orders, items where orders.orders_id = items.orders_id and orders.orders_id = $1 and orders.paymentstatus = 'pending';", [req.params.order_id]);
+      res.status(200).json({ message: data.rows, total_price: total.rows[0].total_price || 'Already Paid'});
     } else {
       res.status(400).json({ message: "Bad request" });
     }
@@ -456,7 +457,7 @@ app.get("/icescoop/admin/allorders/:admin_email", async (req, res) => {
     console.log(req.params.admin_email);
     let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
     if (rows.length > 0) {
-      let data = await pool.query("select * from orders order by orders_id");
+      let data = await pool.query("select * from orders order by orders_id desc");
       console.log(data.rows[0]);
       res.status(200).json({ message: data.rows });
     } else {

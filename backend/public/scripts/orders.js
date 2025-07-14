@@ -12,6 +12,11 @@ function updateOrders(order) {
     let orderItem = document.createElement('div');
     orderItem.classList.add('order-item');
 
+    let orderID = document.createElement('div');
+    orderID.classList.add('order-id')
+    orderID.textContent = `O_ID: ${order.orderid}`;
+    // console.log(order.orderid);
+
     let itemImg = document.createElement('img');
     itemImg.classList.add('item-img')
     itemImg.src = order.image;
@@ -36,6 +41,7 @@ function updateOrders(order) {
     orderDate.classList.add('item-date');
     orderDate.textContent = "Date " + order.date;
 
+    orderItem.appendChild(orderID);
     orderItem.appendChild(itemImg);
     orderItem.appendChild(itemName);
     orderItem.appendChild(itemNo);

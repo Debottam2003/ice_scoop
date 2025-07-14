@@ -92,7 +92,7 @@ main {
 
 .order-item {
   display: grid;
-  grid-template-columns: 100px 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 100px 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   padding: 1rem;
   gap: 20px;
@@ -109,9 +109,10 @@ main {
   object-fit: cover;
 }
 
-.item-name {
+.item-name, .order-id {
   font-size: 1.2rem;
   font-weight: bold;
+  color: white;
 }
 
 .item-no,
