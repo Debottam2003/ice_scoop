@@ -124,13 +124,18 @@ async function getOrdersData() {
                                         </div>
                                         `;
                             });
-                            display.innerHTML += `<h2>Total: ${data.total_price}</h2>`;
-                            display.innerHTML += `<button class="payment" id=${e.target.id}>Mark Paid</button>`;
-                            let pay = document.querySelector(".payment");
-                            pay.addEventListener("click", (e) => {
-                                let order_id = e.target.id;
-                                console.log(order_id);
-                            });
+                            if (data.total_price !== "Already Paid") {
+                                display.innerHTML += `<h2>Total: ${data.total_price}</h2>`;
+                                display.innerHTML += `<button class="payment" id=${e.target.id}>Mark Paid</button>`;
+                                let pay = document.querySelector(".payment");
+                                pay.addEventListener("click", (e) => {
+                                    let order_id = e.target.id;
+                                    alert(order_id);
+                                    console.log(order_id);
+                                });
+                            } else {
+                                display.innerHTML += `<h2>${data.total_price}</h2>`;
+                            }
                         }
                     } catch (err) {
                         console.log(err.message);

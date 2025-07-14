@@ -277,7 +277,7 @@ app.get("/icescoop/logout/:user_email", async (req, res) => {
 // Fetch all of the icecream data
 app.get("/icescoop/icecreams", async (req, res) => {
   try {
-    let { rows } = await pool.query("select * from icecreams where in_stock = TRUE");
+    let { rows } = await pool.query("select * from icecreams where in_stock = TRUE order by icecream_id");
     res.status(200).json({
       message: rows, // array of objects
     });
@@ -441,6 +441,31 @@ app.get("/icescoop/admin/allusers/:admin_email", async (req, res) => {
   }
 });
 
+// stock update
+app.post("/icescoop/admin/stock/:icecream_id", express.json(), async (req, res) => {
+  let icecream_id = req.params.icecream_id;
+  let { in_stock } = req.body;
+  // console.log(in_stock, icecream_id);
+
+  if (!icecream_id) {
+    res.status(400).json({ message: 'provide icecream id & instock status' });
+    return;
+  }
+  try {
+    console.log(icecream_id, in_stock);
+    let dbRes = await pool.query("update icecreams set in_stock = $1 where icecream_id = $2 returning in_stock", [in_stock, icecream_id]);
+    if (dbRes.rows.length > 0) {
+      res.status(200).json({ message: "Done" });
+    } else {
+      res.status(400).json({ message: "Couldn't upadate DB" });
+    }
+  } catch (err) {
+    console.log(err)
+    internalError()
+    // res.status (500).json({message : "Bad Request"});
+  }
+});
+
 // update icecream data
 
 // add new ice cream data
@@ -454,7 +479,7 @@ app.get("/icescoop/admin/detailedorder/:admin_email/:order_id", async (req, res)
       let data = await pool.query("select orders.orders_id as orderID, orders.paymentstatus as paymentstatus, icecreams.name as name, items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders, icecreams, items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id and orders.orders_id = $1;", [req.params.order_id]);
       console.log(data.rows[0]);
       let total = await pool.query("select sum(items.price) as total_price from orders, items where orders.orders_id = items.orders_id and orders.orders_id = $1 and orders.paymentstatus = 'pending';", [req.params.order_id]);
-      res.status(200).json({ message: data.rows, total_price: total.rows[0].total_price || 'Already Paid'});
+      res.status(200).json({ message: data.rows, total_price: total.rows[0].total_price || 'Already Paid' });
     } else {
       res.status(400).json({ message: "Bad request" });
     }

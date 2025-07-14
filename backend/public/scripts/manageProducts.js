@@ -12,54 +12,92 @@ function stockToggle() {
   let displayArray = document.querySelectorAll(".instock");
 
   for (let i = 0; i < stockArray.length; i++) {
-    stockArray[i].addEventListener("click", () => {
+    stockArray[i].addEventListener("click", async (e) => {
       // alert('hello');
-      if (stockArray[i].classList.contains("d")) {
-        stockArray[i].textContent = "In Stock";
-        stockArray[i].classList.remove("d");
-        displayArray[i].textContent = "❌";
-      } else {
-        stockArray[i].textContent = "Out Of Stock";
-        stockArray[i].classList.add("d");
-        displayArray[i].textContent = "✅";
+      let sure = confirm("Are you sure?");
+      if (sure) {
+        if (stockArray[i].classList.contains("d")) {
+          // console.log(e.target.id);
+          try {
+            let response = await fetch(`http://localhost:3333/icescoop/admin/stock/${e.target.id}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ in_stock: false })
+            });
+            if (!response.ok) {
+              alert("Failed to update");
+            } else {
+              stockArray[i].textContent = "In Stock";
+              stockArray[i].classList.remove("d");
+              displayArray[i].textContent = "❌";
+            }
+          } catch (err) {
+            alert("Something went wrong");
+          }
+        }
+        else {
+          try {
+            let response = await fetch(`http://localhost:3333/icescoop/admin/stock/${e.target.id}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ in_stock: true })
+            });
+            if (!response.ok) {
+              alert("Failed to update");
+            } else {
+              stockArray[i].textContent = "Out of Stock";
+              stockArray[i].classList.add("d");
+              displayArray[i].textContent = "✅";
+            }
+          } catch (err) {
+            alert("Something went wrong");
+          }
+        }
       }
     });
   }
 }
 
-window.addEventListener("pageshow", (event) => {
-  if (
-    event.persisted ||
-    performance.getEntriesByType("navigation")[0].type === "back_forward"
-  ) {
-    location.reload();
-  }
-});
-// normal page load pageshow ✅  but event.persisted ❌
-//page back/forwar pageshow ✅  and event.persisted ✅
 let table = document.querySelector("#ordersTable");
 //update product table data
 function uploadProduct(product) {
+
   let tr = document.createElement("tr");
+
   let td1 = document.createElement("td");
   td1.textContent = product.icecream_id;
+
   let td2 = document.createElement("td");
-  td2.textContent = product.name.replaceAll("_"," ");
+  td2.textContent = product.name.replaceAll("_", " ");
+
   let td3 = document.createElement("td");
-  td3.textContent ="₹ "+product.regular_price;
+  td3.textContent = "₹ " + product.regular_price;
+
   let td4 = document.createElement("td");
-  td4.textContent ="₹ "+product.standard_price;
+  td4.textContent = "₹ " + product.standard_price;
+
   let td5 = document.createElement("td");
-  td5.textContent = "₹ "+product.premium_price;
+  td5.textContent = "₹ " + product.premium_price;
+
   let td6 = document.createElement("td");
-  td6.textContent = product.in_stock? "✅" :"❌";
+  td6.textContent = product.in_stock ? "✅" : "❌";
   td6.classList.add("instock");
+
   let td7 = document.createElement("td");
   let button1 = document.createElement("button");
-  button1.textContent = "Out Of Stock";
   button1.classList.add("stock");
+  button1.id = product.icecream_id;
+  // console.log(product.icecream_id);
   if (product.in_stock === true) {
     button1.classList.add("d");
+    button1.textContent = "Out Of Stock";
+  }
+  else {
+    button1.textContent = "In Stock";
   }
   let span1 = document.createElement("span");
   span1.textContent = "---";
@@ -110,3 +148,15 @@ async function updateProducts() {
   }
 }
 updateProducts();
+
+
+window.addEventListener("pageshow", (event) => {
+  if (
+    event.persisted ||
+    performance.getEntriesByType("navigation")[0].type === "back_forward"
+  ) {
+    location.reload();
+  }
+});
+// normal page load pageshow ✅  but event.persisted ❌
+//page back/forwar pageshow ✅  and event.persisted ✅

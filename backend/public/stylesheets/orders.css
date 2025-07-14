@@ -76,9 +76,9 @@ main {
 }
 #orders-section {
   overflow-y: auto;
-  width: 80%;
+  width: 90%;
   min-width: 300px;
-  max-width: 900px;
+  max-width: 1000px;
   height: 80vh;
   background: transparent;
   backdrop-filter: blur(20px);
@@ -95,7 +95,7 @@ main {
   grid-template-columns: 1fr 100px 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   padding: 1rem;
-  gap: 20px;
+  gap: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-align: left;
   width: 100%;
@@ -109,10 +109,10 @@ main {
   object-fit: cover;
 }
 
-.item-name, .order-id {
-  font-size: 1.2rem;
+.item-name,
+.order-id {
+  font-size: 1rem;
   font-weight: bold;
-  color: white;
 }
 
 .item-no,

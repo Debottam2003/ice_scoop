@@ -14,7 +14,7 @@ function updateOrders(order) {
 
     let orderID = document.createElement('div');
     orderID.classList.add('order-id')
-    orderID.textContent = `O_ID: ${order.orderid}`;
+    orderID.textContent = `OID: ${order.orderid}`;
     // console.log(order.orderid);
 
     let itemImg = document.createElement('img');
