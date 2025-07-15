@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import pool from "./db.js";
 import cors from "cors";
 import { fileURLToPath } from "url";
