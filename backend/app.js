@@ -5,6 +5,9 @@ import { fileURLToPath } from "url";
 import path from "path";
 import transporter from "./mail.js";
 import internalError from "./internalError.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let __filename = fileURLToPath(import.meta.url);
 let __dirname = path.dirname(__filename);
@@ -526,11 +529,13 @@ app.get("/icescoop/admin/markpaid/:admin_email/:orders_id", async (req, res) => 
 });
 
 // Database connection then listen and serve
+let PORT = process.env.PORT || 3333;
+
 try {
   await pool.connect();
   console.log("DataBase connected successfully...");
-  app.listen(3333, () => {
-    console.log("Server is listening and serving on port:", 3333, "...");
+  app.listen(PORT, () => {
+    console.log("Server is listening and serving on port:", PORT, "...");
   });
 } catch (err) {
   console.log(err.message);
