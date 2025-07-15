@@ -5,7 +5,9 @@
   box-sizing: border-box;
   font-family: "Segoe UI", sans-serif;
 }
-
+body {
+  display: none;
+}
 /* Back Button */
 .back {
   margin-top: 20px;

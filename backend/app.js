@@ -116,7 +116,7 @@ app.post("/icescoop/userLogin", express.json(), async (req, res) => {
     res.status(400).json({ message: "Provide all credentials" });
   }
   try {
-    console.log(email, password);
+    // console.log(email, password);
     let adminData = await pool.query("select email, password from admin where email = $1", [email]);
     if (adminData.rows.length > 0) {
       // console.log(adminData.rows);
@@ -184,8 +184,8 @@ app.post("/icescoop/otp", express.json(), (req, res) => {
   // send OTP
   const otp = Math.floor(100000 + Math.random() * 900000); // Generate a random OTP
   usersOTP[email] = otp;
-  console.log(usersOTP);
-  console.log(otp);
+  // console.log(usersOTP);
+  // console.log(otp);
   // Send the email
   const mailOptions = {
     from: "debsoumya60812@gmail.com",
@@ -217,7 +217,7 @@ app.post("/icescoop/otp", express.json(), (req, res) => {
   // console.log(mailOptions);
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error("Error sending email:", error.message);
+      // console.error("Error sending email:", error.message);
       return res.status(500).json({ message: "Error sending OTP" });
     }
     res.status(200).json({ message: "OTP sent to Your Email id" });
@@ -316,7 +316,7 @@ app.get("/icescoop/orderData/:user_email", async (req, res) => {
       [data.rows[0].id]
     );
     if (rows.length > 0) {
-      console.log(rows[0]);
+      // console.log(rows[0]);
       res.status(200).json({ message: rows });
     } else {
       res.status(400).json({ message: "No data Found" });
@@ -407,7 +407,7 @@ app.get("/icescoop/foundicecream/:icecream_id", async (req, res) => {
 app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
   try {
     let icecreamName = req.params.icecreamName;
-    console.log(icecreamName);
+    // console.log(icecreamName);
     let { rows } = await pool.query(
       `SELECT * FROM icecreams WHERE name ILIKE $1 LIMIT 1`,
       [`%${icecreamName}%`]
@@ -426,11 +426,11 @@ app.get("/icescoop/foundicecream/name/:icecreamName", async (req, res) => {
 // all users
 app.get("/icescoop/admin/allusers/:admin_email", async (req, res) => {
   try {
-    console.log(req.params.admin_email);
+    // console.log(req.params.admin_email);
     let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
     if (rows.length > 0) {
       let data = await pool.query("select id, email, phone, address, pin_code from users order by id");
-      console.log(data.rows[0]);
+      // console.log(data.rows[0]);
       res.status(200).json({ message: data.rows });
     } else {
       res.status(400).json({ message: "Bad request" });
@@ -452,7 +452,7 @@ app.post("/icescoop/admin/stock/:icecream_id", express.json(), async (req, res) 
     return;
   }
   try {
-    console.log(icecream_id, in_stock);
+    // console.log(icecream_id, in_stock);
     let dbRes = await pool.query("update icecreams set in_stock = $1 where icecream_id = $2 returning in_stock", [in_stock, icecream_id]);
     if (dbRes.rows.length > 0) {
       res.status(200).json({ message: "Done" });
@@ -473,11 +473,11 @@ app.post("/icescoop/admin/stock/:icecream_id", express.json(), async (req, res) 
 // Detailed orders data
 app.get("/icescoop/admin/detailedorder/:admin_email/:order_id", async (req, res) => {
   try {
-    console.log(req.params.admin_email);
+    // console.log(req.params.admin_email);
     let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
     if (rows.length > 0) {
       let data = await pool.query("select orders.orders_id as orderID, orders.paymentstatus as paymentstatus, icecreams.name as name, items.price as price , items.quantity as quantity , items.type as type , orders.date as date from orders, icecreams, items where orders.orders_id = items.orders_id AND items.icecream_id = icecreams.icecream_id and orders.orders_id = $1;", [req.params.order_id]);
-      console.log(data.rows[0]);
+      // console.log(data.rows[0]);
       let total = await pool.query("select sum(items.price) as total_price from orders, items where orders.orders_id = items.orders_id and orders.orders_id = $1 and orders.paymentstatus = 'pending';", [req.params.order_id]);
       res.status(200).json({ message: data.rows, total_price: total.rows[0].total_price || 'Already Paid' });
     } else {
@@ -492,11 +492,11 @@ app.get("/icescoop/admin/detailedorder/:admin_email/:order_id", async (req, res)
 // All Orders Data
 app.get("/icescoop/admin/allorders/:admin_email", async (req, res) => {
   try {
-    console.log(req.params.admin_email);
+    // console.log(req.params.admin_email);
     let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
     if (rows.length > 0) {
       let data = await pool.query("select * from orders order by orders_id desc");
-      console.log(data.rows[0]);
+      // console.log(data.rows[0]);
       res.status(200).json({ message: data.rows });
     } else {
       res.status(400).json({ message: "Bad request" });
@@ -514,13 +514,13 @@ app.get("/icescoop/admin/markpaid/:admin_email/:orders_id", async (req, res) => 
     let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
     if (rows.length > 0) {
       let data = await pool.query("update orders set paymentstatus = 'paid' where orders_id = $1 returning orders_id, paymentstatus", [req.params.orders_id]);
-      console.log(data.rows[0]);
+      // console.log(data.rows[0]);
       res.status(200).json({ message: "Data updated successfully" });
     } else {
       res.status(400).json({ message: "Bad request" });
     }
   } catch (err) {
-    console.log(err.message);
+    // console.log(err.message);
     internalError(req, res);
   }
 });
