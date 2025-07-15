@@ -31,7 +31,7 @@ sendOTP.addEventListener("click", async () => {
         failure.style.display = "none";
         success.style.display = "none";
         sendOTP.textContent = "Sending...";
-        let response = await fetch("https://ice-scoop.onrender.com/icescoop/icescoop/otp", {
+        let response = await fetch("https://ice-scoop.onrender.com/icescoop/otp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
