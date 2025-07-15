@@ -99,7 +99,7 @@ function bringCartData() {
       cartItems = cartItems.filter((element, index) => {
         if (index === Number(e.target.id)) {
           total -= Number(element.price);
-          console.log(element.price);
+          // console.log(element.price);
         }
         return index !== Number(e.target.id);
       });

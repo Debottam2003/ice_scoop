@@ -23,7 +23,7 @@ register.addEventListener("submit", async (e) => {
     let address = document.getElementById("address").value;
     let pin_code = document.getElementById("pin_code").value;
     let phone = document.getElementById("phone").value;
-    console.log(email, password, address, pin_code);
+    // console.log(email, password, address, pin_code);
     try {
         failure.style.display = "none";
         success.style.display = "none";

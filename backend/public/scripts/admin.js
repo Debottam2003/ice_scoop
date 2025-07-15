@@ -16,7 +16,6 @@ logOut.addEventListener("click", () => {
         setTimeout(() => {
             window.location.href = "/icescoop";
         }, 200);
-
     }
 });
 

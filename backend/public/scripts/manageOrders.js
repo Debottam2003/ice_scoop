@@ -70,7 +70,7 @@ async function getOrdersData() {
             document.querySelector("body").appendChild(wrong);
         } else {
             let data = await response.json();
-            console.log("data fetched successfully");
+            // console.log("data fetched successfully");
             let no_orders = document.getElementById("no-orders");
             if (no_orders) {
                 no_orders.remove();
@@ -145,7 +145,7 @@ async function getOrdersData() {
                                                 window.location.reload(1);
                                             }
                                         } catch (err) {
-                                            console.log(err.message);
+                                            // console.log(err.message);
                                             alert("Something went wrong");
                                         }
                                     }
@@ -155,15 +155,15 @@ async function getOrdersData() {
                             }
                         }
                     } catch (err) {
-                        console.log(err.message);
+                        // console.log(err.message);
                         alert("Something went wrong");
                     }
                 });
             });
         }
     } catch (err) {
-        console.lo(err.message);
-        console.log("Something went wrong");
+        // console.lo(err.message);
+        alert("Something went wrong");
     }
 }
 getOrdersData();

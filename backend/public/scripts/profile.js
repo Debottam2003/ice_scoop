@@ -51,7 +51,8 @@ async function getUserData() {
             }
         }
     } catch (err) {
-        console.log("something went wrong");
+        // console.log("something went wrong");
+        alert("something went wrong");
     }
 }
 getUserData();
@@ -66,7 +67,7 @@ logout.addEventListener("click", async () => {
             if (!response.ok) {
                 alert("Something went wrong!");
                 let data = await response.json();
-                console.log(data.message);
+                // console.log(data.message);
             } else {
                 let data = await response.json();
                 alert(data.message);

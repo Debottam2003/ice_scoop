@@ -135,7 +135,7 @@ async function updateProducts() {
       document.querySelector("ordersTable").appendChild(wrong);
     } else {
       let data = await response.json();
-      console.log("data fetched successfully");
+      // console.log("data fetched successfully");
       let productsArray = data.message;
       if (productsArray.length > 0) {
         productsArray.forEach((product) => {

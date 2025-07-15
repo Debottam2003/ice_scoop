@@ -71,7 +71,8 @@ async function getOrders() {
             });
         }
     } catch (err) {
-        console.log(err.message);
+        // console.log(err.message);
+        alert("something went wrong");
     }
 }
 getOrders();

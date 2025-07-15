@@ -21,7 +21,7 @@ sendOTP.addEventListener("click", async () => {
     newPassword.style.display = "none";
     submit.style.display = 'none';
     otp.style.display = "none";
-    console.log("send otp ready");
+    // console.log("send otp ready");
     email = document.getElementById("email").value;
     if (!email) {
         alert("Enter your email");
@@ -40,7 +40,7 @@ sendOTP.addEventListener("click", async () => {
         });
         if (!response.ok) {
             let data = await response.json();
-            console.log(data.message);
+            // console.log(data.message);
             failure.textContent = data.message;
             failure.style.display = "flex";
             sendOTP.textContent = "Resend OTP";
@@ -79,7 +79,7 @@ form.addEventListener("submit", async (e) => {
         });
         if (!response.ok) {
             let data = await response.json();
-            console.log(data.message);
+            // console.log(data.message);
             failure.textContent = data.message;
             failure.style.display = "flex";
             sendOTP.textContent = "Resend OTP";

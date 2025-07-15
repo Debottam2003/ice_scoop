@@ -57,7 +57,8 @@ async function addTableData() {
             });
         }
     } catch (e) {
-        console.log(e.message);
+        // console.log(e.message);
+        alert("Something went wrong");
     }
 }
 addTableData();
