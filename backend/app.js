@@ -507,6 +507,24 @@ app.get("/icescoop/admin/allorders/:admin_email", async (req, res) => {
   }
 });
 
+// Update orders data
+app.get("/icescoop/admin/markpaid/:admin_email/:orders_id", async (req, res) => {
+  try {
+    console.log(req.params.admin_email, req.params.orders_id);
+    let { rows } = await pool.query("select id from admin where email = $1", [req.params.admin_email]);
+    if (rows.length > 0) {
+      let data = await pool.query("update orders set paymentstatus = 'paid' where orders_id = $1 returning orders_id, paymentstatus", [req.params.orders_id]);
+      console.log(data.rows[0]);
+      res.status(200).json({ message: "Data updated successfully" });
+    } else {
+      res.status(400).json({ message: "Bad request" });
+    }
+  } catch (err) {
+    console.log(err.message);
+    internalError(req, res);
+  }
+});
+
 // Database connection then listen and serve
 try {
   await pool.connect();

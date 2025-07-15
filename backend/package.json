@@ -18,7 +18,7 @@
     "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Debottam Kar, Shubhranil Karmakar, Gaganendra Mondal", 
   "license": "ISC",
   "type": "module",
   "description": ""

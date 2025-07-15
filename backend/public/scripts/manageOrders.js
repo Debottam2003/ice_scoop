@@ -128,10 +128,24 @@ async function getOrdersData() {
                                 display.innerHTML += `<h2>Total: ${data.total_price}</h2>`;
                                 display.innerHTML += `<button class="payment" id=${e.target.id}>Mark Paid</button>`;
                                 let pay = document.querySelector(".payment");
-                                pay.addEventListener("click", (e) => {
+                                pay.addEventListener("click", async (e) => {
                                     let order_id = e.target.id;
-                                    alert(order_id);
-                                    console.log(order_id);
+                                    // alert(order_id);
+                                    // console.log(order_id);
+                                    let sure = confirm("Are you sure?");
+                                    if (sure) {
+                                        try {
+                                            let response = await fetch(`http://localhost:3333/icescoop/admin/markpaid/${localStorage.getItem("admin")}/${e.target.id}`);
+                                            if (!response.ok) {
+                                                alert("Something went wrong");
+                                            } else {
+                                                window.location.reload(1);
+                                            }
+                                        } catch (err) {
+                                            console.log(err.message);
+                                            alert("Something went wrong");
+                                        }
+                                    }
                                 });
                             } else {
                                 display.innerHTML += `<h2>${data.total_price}</h2>`;
