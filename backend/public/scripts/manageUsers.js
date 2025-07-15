@@ -36,7 +36,7 @@ function addUserData(e) {
 
 async function addTableData() {
     try {
-        let response = await fetch(`http://localhost:3333/icescoop/admin/allusers/${localStorage.getItem("admin")}`);
+        let response = await fetch(`https://ice-scoop.onrender.com/icescoop/admin/allusers/${localStorage.getItem("admin")}`);
         if (!response.ok) {
             let wrong = document.createElement("h2");
             wrong.textContent = 'No Users';

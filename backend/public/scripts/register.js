@@ -27,7 +27,7 @@ register.addEventListener("submit", async (e) => {
     try {
         failure.style.display = "none";
         success.style.display = "none";
-        let response = await fetch("http://localhost:3333/icescoop/userRegister", {
+        let response = await fetch("https://ice-scoop.onrender.com/icescoop/userRegister", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

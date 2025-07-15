@@ -138,7 +138,7 @@ async function makeOrder() {
   }
   try {
     // console.log("ok");
-    let response = await fetch("http://localhost:3333/icescoop/placeorder", {
+    let response = await fetch("https://ice-scoop.onrender.com/icescoop/placeorder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

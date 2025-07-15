@@ -37,7 +37,7 @@ async function getUserData() {
     try {
         if (email) {
             console.log(email);
-            let response = await fetch(`http://localhost:3333/icescoop/account/${email}`);
+            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/account/${email}`);
             if (!response.ok) {
                 console.log("Something went wrong");
             }
@@ -63,7 +63,7 @@ logout.addEventListener("click", async () => {
     let sure = confirm("Are you sure?");
     if (sure) {
         try {
-            let response = await fetch(`http://localhost:3333/icescoop/logout/${email}`);
+            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/logout/${email}`);
             if (!response.ok) {
                 alert("Something went wrong!");
                 let data = await response.json();

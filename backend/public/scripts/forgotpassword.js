@@ -31,7 +31,7 @@ sendOTP.addEventListener("click", async () => {
         failure.style.display = "none";
         success.style.display = "none";
         sendOTP.textContent = "Sending...";
-        let response = await fetch("http://localhost:3333/icescoop/otp", {
+        let response = await fetch("https://ice-scoop.onrender.com/icescoop/icescoop/otp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -70,7 +70,7 @@ form.addEventListener("submit", async (e) => {
     let otp = document.getElementById("otp").value;
     try {
         submit.textContent = "Processing...";
-        let response = await fetch("http://localhost:3333/icescoop/resetpassword", {
+        let response = await fetch("https://ice-scoop.onrender.com/icescoop/resetpassword", {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

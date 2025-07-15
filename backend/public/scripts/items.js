@@ -115,7 +115,7 @@ function choiceClose() {
 
 async function getData() {
     try {
-        let response = await fetch("http://localhost:3333/icescoop/icecreams");
+        let response = await fetch("https://ice-scoop.onrender.com/icescoop/icecreams");
         if (!response.ok) {
             container.innerHTML = "<h1>No Icecreams to show now</h1>"
         }
@@ -174,7 +174,7 @@ async function getData() {
                         // console.log(icecream_id);
                         try {
                             choice.style.display = "none";
-                            let response = await fetch(`http://localhost:3333/icescoop/foundicecream/${icecream_id}`);
+                            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/foundicecream/${icecream_id}`);
                             if (!response.ok) {
                                 return;
                             } else {
@@ -228,7 +228,7 @@ async function search() {
     if (exp && email) {
         try {
             choice.style.display = "none";
-            let response = await fetch(`http://localhost:3333/icescoop/foundicecream/name/${icecreamName}`);
+            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/foundicecream/name/${icecreamName}`);
             if (!response.ok) {
                 let alertDiv = document.createElement("div");
                 alertDiv.id = "alert";

@@ -22,7 +22,7 @@ function stockToggle() {
         if (stockArray[i].classList.contains("d")) {
           // console.log(e.target.id);
           try {
-            let response = await fetch(`http://localhost:3333/icescoop/admin/stock/${e.target.id}`, {
+            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/admin/stock/${e.target.id}`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -42,7 +42,7 @@ function stockToggle() {
         }
         else {
           try {
-            let response = await fetch(`http://localhost:3333/icescoop/admin/stock/${e.target.id}`, {
+            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/admin/stock/${e.target.id}`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -125,7 +125,7 @@ function uploadProduct(product) {
 async function updateProducts() {
   try {
     let response = await fetch(
-      "http://localhost:3333/icescoop/admin/icecreams"
+      "https://ice-scoop.onrender.com/icescoop/admin/icecreams"
     );
     if (!response.ok) {
       let wrong = document.createElement("h2");

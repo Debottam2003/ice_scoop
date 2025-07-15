@@ -54,7 +54,7 @@ function updateOrders(order) {
 }
 async function getOrders() {
     try {
-        let response = await fetch(`http://localhost:3333/icescoop/orderData/${localStorage.getItem('userEmail')}`);
+        let response = await fetch(`https://ice-scoop.onrender.com/icescoop/orderData/${localStorage.getItem('userEmail')}`);
         if (!response.ok) {
             let data = await response.json();
             // console.log(data.message);

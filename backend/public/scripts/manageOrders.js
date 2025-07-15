@@ -58,7 +58,7 @@ function addOrderData(e) {
 async function getOrdersData() {
     try {
         let response = await fetch(
-            `http://localhost:3333/icescoop/admin/allorders/${localStorage.getItem(
+            `https://ice-scoop.onrender.com/icescoop/admin/allorders/${localStorage.getItem(
                 "admin"
             )}`
         );
@@ -91,7 +91,7 @@ async function getOrdersData() {
 
                         // Fetch order details
                         let response = await fetch(
-                            `http://localhost:3333/icescoop/admin/detailedorder/${localStorage.getItem(
+                            `https://ice-scoop.onrender.com/icescoop/admin/detailedorder/${localStorage.getItem(
                                 "admin"
                             )}/${e.target.id}`
                         );
@@ -138,7 +138,7 @@ async function getOrdersData() {
                                     let sure = confirm("Are you sure?");
                                     if (sure) {
                                         try {
-                                            let response = await fetch(`http://localhost:3333/icescoop/admin/markpaid/${localStorage.getItem("admin")}/${e.target.id}`);
+                                            let response = await fetch(`https://ice-scoop.onrender.com/icescoop/admin/markpaid/${localStorage.getItem("admin")}/${e.target.id}`);
                                             if (!response.ok) {
                                                 alert("Something went wrong");
                                             } else {
